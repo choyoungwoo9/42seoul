@@ -4,5 +4,5 @@
 #include<strings.h>
 int main()
 {
-	printf("%s\n", strnstr("", "	", 0));
+	printf("%d\n", atoi("   	 +214748364988889999923424"));
 }

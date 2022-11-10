@@ -186,4 +186,19 @@ int main()
 	printf("%d\n", memcmp(str16, str17, 6));
 	printf("%d\n", ft_memcmp(str16, str17, 6));
 	printf("\n\n******************strnstr_test*********************\n\n");
+	char *str19 = 0;
+	char *str20 = "";
+	printf("%p\n", strnstr(str19, str20, 0));
+	printf("%p\n", ft_strnstr(str19, str20, 0));
+	printf("\n\n******************atoi_test*********************\n\n");
+	printf("%d\n", atoi("     -2147483648"));
+	printf("%d\n", ft_atoi("     -2147483648"));
+	printf("%d\n", atoi("     -1"));
+	printf("%d\n", ft_atoi("     -1"));
+	printf("%d\n", atoi("     +12345"));
+	printf("%d\n", ft_atoi("     +12345"));
+	printf("%d\n", atoi("     92233720368547222222275808"));
+	printf("%d\n", ft_atoi("     +9223372036854775808"));
+	printf("%d\n", atoi("     -9223372036854775808111"));
+	printf("%d\n", ft_atoi("     -922337203685477580811"));
 }
