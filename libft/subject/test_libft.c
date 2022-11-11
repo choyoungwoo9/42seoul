@@ -157,13 +157,15 @@ int main()
 	printf("%p\n", ft_strrchr(s8, '@'));
 	printf("\n\n******************strncmp_test*********************\n\n");
 	char *str9 = "abc";
-	char *str10 = "abf";
+	char *str10 = "ab";
 	char *str11 = "abfba";
 	char *str12 = "abaaa";
 	printf("%d\n", strncmp(str9, str10, 4));
 	printf("%d\n", ft_strncmp(str9, str10, 4));
 	printf("%d\n", strncmp(str11, str12, 3));
 	printf("%d\n", ft_strncmp(str11, str12, 3));
+	printf("%d\n", strncmp("test\200", "test\0", 6));
+	printf("%d\n", ft_strncmp("test\200", "test\0", 6));
 	printf("\n\n******************memchr_test*********************\n\n");
 	char *str13 = "abacdae";
 	printf("%p\n", memchr(str13, 'a', 7));
@@ -201,4 +203,5 @@ int main()
 	printf("%d\n", ft_atoi("     +9223372036854775808"));
 	printf("%d\n", atoi("     -9223372036854775808111"));
 	printf("%d\n", ft_atoi("     -922337203685477580811"));
+	
 }

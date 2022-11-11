@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 10:34:30 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 17:53:33 by youngwch         ###   ########.fr       */
+/*   Created: 2022/11/10 17:51:14 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/10 19:55:49 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	int		length;
+	char	*retptr;
 
-	i = 0;
-	if (src < dst && src + len >= dst)
+	length = 0;
+	while (*(s1 + length))
+		length ++;
+	retptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (retptr == 0)
+		return (0);
+	*(retptr + length + 1) = '\0';
+	while (length >= 0)
 	{
-		while (i < len)
-		{
-			*(char *)(dst + len - i - 1) = *(char *)(src + len - i - 1);
-			i ++;
-		}
-		return (dst);
+		*(retptr + length) = *(const char *)(s1 + length);
+		length --;
 	}
-	while (i < len)
-	{
-		*(char *)(dst + i) = *(char *)(src + i);
-		i ++;
-	}
-	return (dst);
+	return (retptr);
 }

@@ -2,7 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 #include<strings.h>
+#include"ft_strjoin.c"
 int main()
 {
-	printf("%d\n", atoi("   	 +214748364988889999923424"));
+	//printf("%s\n", substr("abcde", 3, 2));
+	printf("%s\n", ft_strjoin("", ""));
 }

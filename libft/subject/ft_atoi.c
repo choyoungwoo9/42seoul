@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:58:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 13:30:00 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:46:12 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	find_digit(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	int		sign;
-	int		digit;
+	int			sign;
+	int			digit;
 	long long	result;
 
 	sign = 1;
