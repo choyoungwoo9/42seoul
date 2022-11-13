@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:33:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 17:50:41 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:51:52 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	*ft_calloc(size_t count, size_t size)
 	while (i < size * count)
 	{
 		*(char *)(ptr + i) = '\0';
+		i ++;
 	}
 	return (ptr);
 }

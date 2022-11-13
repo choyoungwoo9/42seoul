@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 11:02:44 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/11 13:06:35 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:16:10 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	assign_joinstr(char *joinstr, const char *s1, const char *s2)
+void	assign_joinstr(char *joinstr, char const *s1, char const *s2)
 {
 	int		tmp;
 	int		s1_length;
@@ -38,7 +38,7 @@ void	assign_joinstr(char *joinstr, const char *s1, const char *s2)
 	*(joinstr + tmp) = '\0';
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*joinstr;
 	int		s1_length;
