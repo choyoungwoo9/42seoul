@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:22:20 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 20:48:30 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/13 21:36:12 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,15 @@ char	*ft_itoa(int n)
 	digit = count_digit(n);
 	if (n < 0)
 		digit ++;
-	retptr = (char *)malloc(sizeof(char) * digit);
+	retptr = (char *)malloc(sizeof(char) * (digit + 1));
 	if (retptr == 0)
 		return (0);
+	*(retptr + digit) = '\0';
+	if (n == 0)
+	{
+		*retptr = '0';
+		return (retptr);
+	}
 	reculsive_assign(retptr, digit, n);
 	return (retptr);
 }

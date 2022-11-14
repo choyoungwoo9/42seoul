@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:51:14 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 19:55:49 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:18:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *s1)
 	retptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (retptr == 0)
 		return (0);
-	*(retptr + length + 1) = '\0';
+	*(retptr + length) = '\0';
 	while (length >= 0)
 	{
 		*(retptr + length) = *(const char *)(s1 + length);

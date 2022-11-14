@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:33:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 20:51:52 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/13 21:52:08 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_calloc(size_t count, size_t size)
 
 	i = 0;
 	ptr = malloc(size * count);
+	if (ptr == 0)
+		return (0);
 	while (i < size * count)
 	{
 		*(char *)(ptr + i) = '\0';

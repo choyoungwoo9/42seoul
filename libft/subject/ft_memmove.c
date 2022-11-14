@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:34:30 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 17:53:33 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:57:28 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	i;
 
+	if (dst == 0 && src == 0)
+		return (0);
 	i = 0;
 	if (src < dst && src + len >= dst)
 	{

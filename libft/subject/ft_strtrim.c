@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:10:02 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 09:39:55 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:05:02 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,33 @@ int	is_set(char ch, char const *set)
 
 int	find_retstr_length(char const *s1, char const *set)
 {
-	int	length;
+	int	ret_length;
 
-	length = 0;
-	while (*(s1 + length))
-		length ++;
-	while (*(s1))
-	{
-		if (is_set(*s1, set))
-			length --;
+	while (*s1 != '\0' && is_set(*s1, set))
 		s1 ++;
+	ret_length = 0;
+	while (*(s1 + ret_length))
+		ret_length ++;
+	while (ret_length > 0)
+	{
+		if (!is_set(*(s1 + ret_length - 1), set))
+			break ;
+		ret_length --;
 	}
-	return (length + 1);
+	return (ret_length);
 }
 
-void	assign_ptr(char *ptr, char const *s1, char const *set)
+void	assign_ptr(char *ptr, char const *s1, char const *set, int str_length)
 {
-	int	tmp;
+	int	i;
 
-	tmp = 0;
-	while (*(s1))
-	{
-		if (!is_set(*s1, set))
-		{
-			*(ptr + tmp) = *s1;
-			tmp ++;
-		}
+	while (*s1 != '\0' && is_set(*s1, set))
 		s1 ++;
+	i = 0;
+	while (i < str_length)
+	{
+		*(ptr + i) = *(s1 + i);
+		i ++;
 	}
 }
 
@@ -61,9 +61,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*retptr;
 
 	retstr_length = find_retstr_length(s1, set);
-	retptr = (char *)malloc(sizeof(char) * retstr_length);
+	retptr = (char *)malloc(sizeof(char) * retstr_length + 1);
 	if (retptr == 0)
 		return (0);
-	assign_ptr(retptr, s1, set);
+	*(retptr + retstr_length) = '\0';
+	assign_ptr(retptr, s1, set, retstr_length);
 	return (retptr);
 }

@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 19:58:13 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/11 13:15:30 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/13 21:53:32 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	while (*(s + str_length))
 		str_length ++;
 	sub_length = 0;
-	while (sub_length < str_length && sub_length < len)
+	while (sub_length + start < str_length && sub_length < len)
 		sub_length ++;
 	sub_ptr = malloc(sizeof(char) * (sub_length + 1));
 	if (sub_ptr == 0)
