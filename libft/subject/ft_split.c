@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:40:28 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 15:51:28 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:18:36 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char	**ft_split(char const *s, char c)
 			free(*(retptr + allocated_ptr_length));
 			allocated_ptr_length --;
 		}
+		free(retptr);
 		return (0);
 	}
 	return (retptr);
