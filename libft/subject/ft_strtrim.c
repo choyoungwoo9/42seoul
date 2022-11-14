@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:10:02 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 13:05:02 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:48:25 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	is_set(char ch, char const *set)
+static int	is_set(char ch, char const *set)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ int	is_set(char ch, char const *set)
 	return (0);
 }
 
-int	find_retstr_length(char const *s1, char const *set)
+static int	find_retstr_length(char const *s1, char const *set)
 {
 	int	ret_length;
 
@@ -41,14 +41,14 @@ int	find_retstr_length(char const *s1, char const *set)
 	return (ret_length);
 }
 
-void	assign_ptr(char *ptr, char const *s1, char const *set, int str_length)
+static void	assign_ptr(char *ptr, char const *s1, char const *set, int length)
 {
 	int	i;
 
 	while (*s1 != '\0' && is_set(*s1, set))
 		s1 ++;
 	i = 0;
-	while (i < str_length)
+	while (i < length)
 	{
 		*(ptr + i) = *(s1 + i);
 		i ++;

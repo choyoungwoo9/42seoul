@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:20:07 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 22:03:28 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:32:38 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strrchr(const char *s, int c)
 		}
 		i ++;
 	}
-	if (c == 0)
+	if ((char)c == 0)
 		return ((char *)(s + i));
 	if (check_found != -1)
 		return ((char *)(s + check_found));

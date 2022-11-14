@@ -6,24 +6,24 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:27:10 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 09:53:50 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:49:56 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	check_needle(const char *heystack, const char *needle, size_t i, size_t len)
+static int	check_needle(const char *hey, const char *nee, size_t i, size_t len)
 {
 	int	needle_index;
 
 	needle_index = 0;
-	while (*(heystack + i) != '\0' && i < len)
+	while (*(hey + i) != '\0' && i < len)
 	{
-		if (*(heystack + i) != *(needle + needle_index))
+		if (*(hey + i) != *(nee + needle_index))
 		{
 			break ;
 		}
-		if (*(needle + needle_index + 1) == '\0')
+		if (*(nee + needle_index + 1) == '\0')
 			return (1);
 		i ++;
 		needle_index ++;

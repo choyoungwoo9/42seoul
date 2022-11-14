@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:40:28 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 10:55:24 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:51:28 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	get_word_length(char const *s, char c)
+static int	get_word_length(char const *s, char c)
 {
 	int	length;
 
@@ -26,7 +26,7 @@ int	get_word_length(char const *s, char c)
 	return (length);
 }
 
-int	count_word(char const *s, char c)
+static int	count_word(char const *s, char c)
 {
 	int	word_count;
 
@@ -44,7 +44,7 @@ int	count_word(char const *s, char c)
 	return (word_count);
 }
 
-int	alloc_assign_ptr(char **retptr, char const *s, char c)
+static int	alloc_assign_ptr(char **retptr, char const *s, char c)
 {
 	int	word_count;
 	int	tmp;
@@ -79,9 +79,9 @@ char	**ft_split(char const *s, char c)
 
 	word_counting = count_word(s, c);
 	retptr = (char **)malloc(sizeof(char *) * (word_counting + 1));
-	*(retptr + word_counting) = 0;
 	if (retptr == 0)
 		return (0);
+	*(retptr + word_counting) = 0;
 	allocated_ptr_length = alloc_assign_ptr(retptr, s, c);
 	if (allocated_ptr_length != count_word(s, c))
 	{

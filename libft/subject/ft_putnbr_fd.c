@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 20:17:08 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 21:57:09 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:50:21 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	reculsive_putnbr(int n, int fd)
+static void	reculsive_putnbr(int n, int fd)
 {
 	long long	num;
 	char		tmp_ch;

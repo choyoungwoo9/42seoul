@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:22:20 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/13 21:36:12 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:30:49 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	count_digit(int n)
+static int	count_digit(int n)
 {
 	int	digit;
 
@@ -27,7 +27,7 @@ int	count_digit(int n)
 	return (digit);
 }
 
-void	reculsive_assign(char *ptr, int digit, int n)
+static void	reculsive_assign(char *ptr, int digit, int n)
 {
 	long long	num;
 

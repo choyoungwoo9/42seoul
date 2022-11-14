@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:58:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/10 16:46:12 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:30:28 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	reculsive_atoi(const char *str, int digit, int place_value)
+static int	reculsive_atoi(const char *str, int digit, int place_value)
 {
 	if (digit == 0)
 		return (0);
@@ -20,7 +20,7 @@ int	reculsive_atoi(const char *str, int digit, int place_value)
 		+ (*(str + digit - 1) - '0') * place_value);
 }
 
-int	find_digit(const char *str)
+static int	find_digit(const char *str)
 {
 	int	index;
 
