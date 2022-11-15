@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:20:45 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 20:40:31 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:40:50 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst -> next)
+	while (lst)
 	{
 		f(lst -> content);
 		lst = lst -> next;
 	}
-	f(lst -> content);
 }

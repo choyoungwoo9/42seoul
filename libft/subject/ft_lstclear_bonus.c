@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:12:51 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 20:38:31 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:57:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*tmp_lst;
 
 	tmp_lst = *lst;
-	while (tmp_lst -> next)
+	while (tmp_lst)
 	{
-		del(tmp_lst);
-		free((*lst));
+		del(tmp_lst->content);
 		tmp_lst = tmp_lst -> next;
+		free((*lst));
 		*lst = tmp_lst;
 	}
-	del(tmp_lst);
-	free((*lst));
 	*lst = 0;
 }
