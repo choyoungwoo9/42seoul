@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:12:51 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 20:15:44 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:38:31 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	ft_lstclear(t_list **lst, void(*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp_lst;
 
