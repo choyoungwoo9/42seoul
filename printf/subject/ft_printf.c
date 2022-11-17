@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:28:20 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/17 16:49:21 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:54:44 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,22 @@ int	ft_printf(const char *format, ...)
 			}
 			else if (*(format) == 'c')
 			{
+				char tmp = va_arg(ap, char);
 				write(1, format, 1);
 			}
 			else if (*(format) == 's')
 			{
-				write(1, format, 1);
+				char *tmp = va_arg(ap, char);
+				write(1, format, ft_strlen(tmp));
 			}
 			else if (*(format) == 'p')
 			{
+				char tmp = va_arg(ap, char);
 				write(1, format, 1);
 			}
 			else if (*(format) == 'd')
 			{
+				char tmp = va_arg(ap, char);
 				write(1, format, 1);
 			}
 			else if (*(format) == 'i')
