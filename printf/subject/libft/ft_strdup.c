@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 15:28:12 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/17 14:52:15 by youngwch         ###   ########.fr       */
+/*   Created: 2022/11/10 17:51:14 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/14 10:18:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strdup(const char *s1)
 {
-	unsigned int	str_length;
-	char			*retptr;
+	int		length;
+	char	*retptr;
 
-	str_length = 0;
-	while (*(s + str_length))
-		str_length ++;
-	retptr = (char *)malloc(sizeof(char) * (str_length + 1));
+	length = 0;
+	while (*(s1 + length))
+		length ++;
+	retptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (retptr == 0)
 		return (0);
-	*(retptr + str_length) = '\0';
-	while ((int)--str_length >= 0)
-		*(retptr + str_length) = f(str_length, *(s + str_length));
+	*(retptr + length) = '\0';
+	while (length >= 0)
+	{
+		*(retptr + length) = *(const char *)(s1 + length);
+		length --;
+	}
 	return (retptr);
 }

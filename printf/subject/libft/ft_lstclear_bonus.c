@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 15:28:12 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/17 14:52:15 by youngwch         ###   ########.fr       */
+/*   Created: 2022/11/14 18:12:51 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/15 16:57:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	unsigned int	str_length;
-	char			*retptr;
+	t_list	*tmp_lst;
 
-	str_length = 0;
-	while (*(s + str_length))
-		str_length ++;
-	retptr = (char *)malloc(sizeof(char) * (str_length + 1));
-	if (retptr == 0)
-		return (0);
-	*(retptr + str_length) = '\0';
-	while ((int)--str_length >= 0)
-		*(retptr + str_length) = f(str_length, *(s + str_length));
-	return (retptr);
+	tmp_lst = *lst;
+	while (tmp_lst)
+	{
+		del(tmp_lst->content);
+		tmp_lst = tmp_lst -> next;
+		free((*lst));
+		*lst = tmp_lst;
+	}
+	*lst = 0;
 }
