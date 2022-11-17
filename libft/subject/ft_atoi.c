@@ -6,18 +6,22 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:58:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/14 15:30:28 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:36:50 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-static int	reculsive_atoi(const char *str, int digit, int place_value)
+static long long	reculsive_atoi(const char *str, int digit,
+	int place_value, int sign)
 {
+	long long	ret_ll;
+
 	if (digit == 0)
 		return (0);
-	return (reculsive_atoi(str, digit - 1, place_value * 10)
-		+ (*(str + digit - 1) - '0') * place_value);
+	ret_ll = reculsive_atoi(str, digit - 1, place_value * 10, sign)
+		+ ((*(str + digit - 1) - '0') * place_value);
+	return (ret_ll);
 }
 
 static int	find_digit(const char *str)
@@ -37,14 +41,8 @@ int	ft_atoi(const char *str)
 	long long	result;
 
 	sign = 1;
-	while (1)
-	{
-		if (*(str) == '\t' || *(str) == '\n' || *(str) == '\v' || *(str) == '\f'
-			|| *(str) == '\r' || *(str) == ' ')
-			str ++;
-		else
-			break ;
-	}
+	while ((*(str) >= 9 && *(str) <= 13) || *(str) == ' ')
+		str ++;
 	if (*(str) == '-' || *(str) == '+')
 	{
 		if (*(str) == '-')
@@ -52,6 +50,6 @@ int	ft_atoi(const char *str)
 		str ++;
 	}
 	digit = find_digit(str);
-	result = reculsive_atoi(str, digit, 1);
+	result = reculsive_atoi(str, digit, 1, sign);
 	return (sign * result);
 }

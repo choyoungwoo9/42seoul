@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:01:57 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/15 19:49:34 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/17 09:49:49 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	free_all_lst(t_list *start_lst, void (*del)(void *))
 {
 	t_list	*tmp_lst;
 
-	while (start_lst != (t_list *)-1)
+	while (start_lst != (t_list *)0)
 	{
 		tmp_lst = start_lst;
 		start_lst = tmp_lst -> next;
@@ -26,11 +26,11 @@ static void	free_all_lst(t_list *start_lst, void (*del)(void *))
 	return ;
 }
 
-void	go(t_list **tmp_ptr, t_list **al_ptr, t_list **lst, void *(*f)(void *))
+static void	go(t_list **p1, t_list **al_ptr, t_list **lst, void *(*f)(void *))
 {
-		(*tmp_ptr) = (*al_ptr);
-		(*tmp_ptr)->content = f((*lst)->content);
-		(*tmp_ptr)->next = (void *)(-1);
+		(*p1) = (*al_ptr);
+		(*p1)->content = f((*lst)->content);
+		(*p1)->next = (void *)(0);
 		(*lst) = (*lst)->next;
 }
 
@@ -49,7 +49,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		al_ptr = (t_list *)(malloc(sizeof(t_list)));
-		if (al_ptr == (t_list *)('\0'))
+		if (al_ptr == (t_list *)(0))
 		{
 			free_all_lst(start_lst, del);
 			return (0);

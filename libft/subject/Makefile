@@ -15,8 +15,6 @@ SRCS2 = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 NAME = libft.a
 
-OBJS2 = ${SRCS2:.c=.o}
-
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -42,5 +40,4 @@ fclean : clean
 re : fclean all
 
 bonus :
-	sleep 1;
 	make HAVE_BONUS=1 all
