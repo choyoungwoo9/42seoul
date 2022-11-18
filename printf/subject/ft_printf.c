@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:28:20 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/17 16:54:44 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:59:36 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include<stdarg.h>
 #include<unistd.h>
 #include"libft/libft.h"
+#include"ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -31,23 +32,23 @@ int	ft_printf(const char *format, ...)
 			}
 			else if (*(format) == 'c')
 			{
-				char tmp = va_arg(ap, char);
-				write(1, format, 1);
+				char ch = va_arg(ap, int);
+				write(1, &ch, 1);
 			}
 			else if (*(format) == 's')
 			{
-				char *tmp = va_arg(ap, char);
-				write(1, format, ft_strlen(tmp));
+				char *tmp = va_arg(ap, char *);
+				write(1, tmp, ft_strlen(tmp));
 			}
 			else if (*(format) == 'p')
 			{
-				char tmp = va_arg(ap, char);
+				//char tmp = va_arg(ap, char);
 				write(1, format, 1);
 			}
 			else if (*(format) == 'd')
 			{
-				char tmp = va_arg(ap, char);
-				write(1, format, 1);
+				int tmp = va_arg(ap, int);
+				ft_putnbr_fd(tmp, 1);
 			}
 			else if (*(format) == 'i')
 			{
@@ -77,6 +78,7 @@ int	ft_printf(const char *format, ...)
 int main()
 {
 	printf("%d, %s\n", 214748364, (char *)0);
-	ft_printf("abc + %d, %d", 1, 4);
+	printf("abc + %c, %s, %d\n", 'z', "string", 4);
+	ft_printf("abc + %c, %s, %d\n", 'z', "string", 4);
 	return (0);
 }
