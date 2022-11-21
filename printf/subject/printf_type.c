@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:05:26 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/21 12:35:17 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:12:11 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_type1(char format_type, int *length, va_list ap)
 	else if (format_type == 'd')
 	{
 		tmp_i = va_arg(ap, int);
-		(*length) = (*length) + find_int_digit(tmp_i);
+		*length = *length + find_int_digit(tmp_i);
 		ft_putnbr_fd(tmp_i, 1);
 	}
 	else if (format_type == 'i')

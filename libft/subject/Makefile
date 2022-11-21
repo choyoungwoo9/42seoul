@@ -40,4 +40,5 @@ fclean : clean
 re : fclean all
 
 bonus :
+	sleep 1;
 	make HAVE_BONUS=1 all

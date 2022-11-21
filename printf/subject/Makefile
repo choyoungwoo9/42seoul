@@ -28,6 +28,3 @@ fclean : clean
 	rm -rf ${NAME}
 
 re : fclean all
-	make -C libft re
-
-bonus :

@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:28:20 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/21 12:52:26 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:05:21 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	categorize_type(const char *format, int *length, va_list ap)
 	type = *format;
 	if (type == 'c' || type == 'd' || type == 'i')
 		check_type1(type, length, ap);
-	else if (type == 'x' || tp == 'X')
-		check_type2(tp, length, ap);
+	else if (type == 'x' || type == 'X')
+		check_type2(type, length, ap);
 	else if (type == '%' || type == 'u')
 		check_type3(type, length, ap);
 	else if (type == 's')
-		check_type4(tp, length, ap);
+		check_type4(type, length, ap);
 	else if (type == 'p')
 		check_type5(type, length, ap);
 }
