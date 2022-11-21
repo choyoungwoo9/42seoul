@@ -1,6 +1,6 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = ft_printf.c
+SRCS = ft_printf.c printf_util.c printf_util2.c
 
 NAME = libftprintf.a
 
@@ -9,12 +9,16 @@ NAME = libftprintf.a
 
 OBJS = ${SRCS:.c=.o}
 
-all: ${NAME}
+all: make_libft ${NAME}
 
-${NAME}: ${OBJS}
+make_libft:
 	make -C libft all
 	make -C libft bonus
-	ar r $@ $^ libft/libft.a
+	
+
+${NAME}: ${OBJS}
+	cp libft/libft.a ${NAME}
+	ar r $@ $^
 
 clean:
 	make -C libft clean
@@ -26,3 +30,6 @@ fclean : clean
 
 re : fclean all
 	make -C libft re
+	make -C libft bonus
+
+bonus :
