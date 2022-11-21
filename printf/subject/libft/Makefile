@@ -8,35 +8,27 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
 		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
 		ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-
-SRCS2 = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
+		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+		ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 		ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+
 NAME = libft.a
+
+all: ${NAME}
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 OBJS = ${SRCS:.c=.o}
-OBJS2 = ${SRCS2:.c=.o}
-ifdef HAVE_BONUS
-	DETERMINED_OBJS = $(OBJS2)
-else
-	DETERMINED_OBJS = $(OBJS)
-endif
 
-all: ${NAME}
-${NAME}: ${DETERMINED_OBJS}
+${NAME}: ${OBJS}
 	ar r $@ $^
 
 clean:
-	rm -rf ${OBJS} ${OBJS2}
+	rm -rf ${OBJS}
 
 fclean : clean
 	rm -rf ${NAME}
 
 re : fclean all
-
-bonus :
-	make HAVE_BONUS=1 all

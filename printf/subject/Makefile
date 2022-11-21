@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = ft_printf.c printf_util.c printf_util2.c
+SRCS = ft_printf.c printf_type.c printf_util.c printf_util2.c
 
 NAME = libftprintf.a
 
@@ -13,7 +13,6 @@ all: make_libft ${NAME}
 
 make_libft:
 	make -C libft all
-	make -C libft bonus
 	
 
 ${NAME}: ${OBJS}
@@ -30,6 +29,5 @@ fclean : clean
 
 re : fclean all
 	make -C libft re
-	make -C libft bonus
 
 bonus :
