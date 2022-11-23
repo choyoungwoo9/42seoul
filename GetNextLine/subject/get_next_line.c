@@ -5,152 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 08:42:28 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/22 18:42:07 by youngwch         ###   ########.fr       */
+/*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/23 16:24:37 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "get_next_line_utils.c"
-#include<stdio.h>
+#include "stdio.h"
 #define BUFFER_SIZE 5
-
-void	lst_addback(t_list **list_start, char *ptr_buffer, int length)
-{
-	t_list	*list_alloc;
-	t_list	*tmp;
-	
-	list_alloc = (t_list *)malloc(sizeof(t_list));
-	list_alloc->state_index = -1;
-	list_alloc->next = 0;
-	list_alloc->content = (char *)malloc(sizeof(char) * length + 1);
-	*(list_alloc->content + length) = 0;
-	while(--length >= 0)
-	{
-		*(list_alloc->content + length) = *(ptr_buffer + length);
-	}
-	tmp = *list_start;
-	if(tmp == 0)
-	{
-		*list_start = list_alloc;
-		return ;
-	}
-	while(tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = list_alloc;
-}
 
 char	*get_next_line(int fd)
 {
-	static t_list	**list_start = 0;
-	t_list	*list_tmp;
-	char	*ptr_return;
-	char	*ptr_buffer;
-	char	*ptr_tmp;
-	int		length;
-	int		index_newline;
-	
-	if (list_start == 0)
+	//이전의 정보를 가지고 있다가, 밀면서 하는 방법
+	static char	*backup_buffer = "";
+	char	*buffer;
+	char	*ret_str;
+	char	*tmp_str;
+	int i = 0;
+	int j = 0;
+	while(*(backup_buffer + i) != '\n' && *(backup_buffer + i))
 	{
-		list_start = malloc(sizeof(t_list *));
-		*list_start = 0;
+		// printf("h");
+		i ++;
 	}
-	ptr_tmp = 0;
-	ptr_buffer = malloc(BUFFER_SIZE);
+	if(i != ft_strlen(backup_buffer))
+	{
+		ret_str = ft_substr(backup_buffer, 0, i + 1);
+		backup_buffer = ft_substr(backup_buffer, i + 1, ft_strlen(backup_buffer) - i - 1);
+		return ret_str;
+	}
+	buffer = malloc(BUFFER_SIZE + 1);
+	*(buffer + BUFFER_SIZE) = '\0';
 	while(1)
 	{
-		length = read(fd, ptr_buffer, BUFFER_SIZE);
-		if(length == -1 || length == 0)
+		int check = read(fd, buffer, BUFFER_SIZE);
+		if(check == 0)
 		{
-			//free 필요
-			return 0;
+			return NULL;
 		}
-		lst_addback(list_start, ptr_buffer, length);
-		index_newline = 0;
-		while(*(ptr_buffer + index_newline) != '\n')
-			index_newline ++;
-		//개행문자 버퍼에 있음
-		if(length != index_newline)
+		j = 0;
+		while(*(backup_buffer + j) != '\n' && j < check)
 		{
-			list_tmp = *list_start;
-			//이미 사용한 리스트 만났을 떄
-			while(list_tmp->state_index == -2)
-				list_tmp = list_tmp->next;
-			//인덱스 찍어놓은 리스트 만났을 때
-			if(list_tmp->state_index != -1)
-			{
-				ptr_tmp = ft_substr
-				(list_tmp->content, list_tmp->state_index + 1, BUFFER_SIZE - list_tmp->state_index - 1);
-				ptr_return = ft_strjoin("" , ptr_tmp);
-				//free(ptr_tmp);
-				list_tmp->state_index = -2;
-			}
-			while(list_tmp->next)
-			{	
-				ptr_tmp = ptr_return;
-				ptr_return = ft_strjoin(ptr_return, list_tmp->content);
-				//free(ptr_tmp);
-				list_tmp->state_index = -2;
-				list_tmp = list_tmp->next;
-			}
-			ptr_tmp = ptr_return;
-			ptr_return = ft_strjoin(ptr_return, list_tmp->content);
-			//free(ptr_tmp);
-			list_tmp->state_index = index_newline;
-			return ptr_return;
+			j ++;
 		}
-		//파일끝나서 버퍼하고 사이즈 다름
-		if(length != BUFFER_SIZE)
+		if(j != check)
 		{
-			list_tmp = *list_start;
-			//이미 사용한 리스트 만났을 떄
-			while(list_tmp->state_index == -2)
-				list_tmp = list_tmp->next;
-			//인덱스 찍어놓은 리스트 만났을 때
-			if(list_tmp->state_index != -1)
-			{
-				ptr_tmp = ft_substr
-				(list_tmp->content, list_tmp->state_index + 1, BUFFER_SIZE - list_tmp->state_index - 1);
-				ptr_return = ft_strjoin("" , ptr_tmp);
-				//free(ptr_tmp);
-				list_tmp->state_index = -2;
-			}
-			while(list_tmp)
-			{	
-				ptr_tmp = ptr_return;
-				ptr_return = ft_strjoin(ptr_return, list_tmp->content);
-				//free(ptr_tmp);
-				list_tmp->state_index = -2;
-				list_tmp = list_tmp->next;
-			}
-			//free 필요
-			return ptr_return;
+			tmp_str = ft_substr(buffer, 0, j + 1);
+			ret_str = ft_strjoin(backup_buffer, tmp_str);
+			backup_buffer = ft_substr(tmp_str, j + 1, check - j - 1);
+			return ret_str;
 		}
+		backup_buffer = ft_strjoin(backup_buffer, buffer);
 	}
-	return 0;
+	return ret_str;
 }
 
-#include<stdio.h>
 #include<fcntl.h>
 int main()
 {
-	int fd;
-	
-	fd = open("./exam", O_RDONLY);
+	int fd = open("./exam", O_RDONLY);
+	char *tmp;
 	while(1)
 	{
-		char *str = get_next_line(fd);
-		if(str == NULL)
-			break;
-		int i = 0;
-		while(*(str + i) != '\n')
+		tmp = get_next_line(fd);
+		if(tmp == 0)
+			return 0;
+		else
 		{
-			write(1, str + i, 1);
-			i ++;
+			printf("출력시작---\n%s\n---출력끝\n", tmp);
 		}
-		write(1, "\n", 1);
-		//free(str);
 	}
-} 
+}

@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:54:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/22 18:17:30 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:24:13 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		tmp ++;
 	}
 	return (sub_ptr);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	length;
+
+	if (s == 0)
+		return (0);
+	length = 0;
+	while (*(s + length) != 0)
+		length ++;
+	return (length);
 }

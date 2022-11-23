@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:32:56 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/22 17:01:24 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:10:29 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
+	int				length;
 	int				state_index;
 }	t_list;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
 #endif
