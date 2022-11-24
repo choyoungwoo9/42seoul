@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:54:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/23 16:24:13 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:47:51 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1_length = 0;
 	s2_length = 0;
+	if (s1 == 0 || s2 == 0)
+		return 0;
 	while (*(s1 + s1_length))
 		s1_length ++;
 	while (*(s2 + s2_length))
@@ -66,6 +68,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	tmp;
 	char	*sub_ptr;
 
+	if (s == 0)
+		return (0);
 	str_length = 0;
 	while (*(s + str_length))
 		str_length ++;
@@ -73,8 +77,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	while (sub_length + start < str_length && sub_length < len)
 		sub_length ++;
 	sub_ptr = malloc(sizeof(char) * (sub_length + 1));
-	if (sub_ptr == 0)
-		return (0);
 	*(sub_ptr + sub_length) = '\0';
 	tmp = 0;
 	while (tmp < sub_length)
