@@ -1,47 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line33.c                                  :+:      :+:    :+:   */
+/*   get_next_line copy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/24 17:33:29 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/26 13:32:32 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include "get_next_line_utils.c"
-#include <stdio.h>
-#define BUFFER_SIZE 10
+char	*read_nothing(char *buffer, char **backup_buffer)
+{
+	char	*ret_str;
+	
+	free(buffer);
+	if(**backup_buffer != '\0')
+	{
+		ret_str = ft_strjoin("", *backup_buffer);
+		free(*backup_buffer);
+		*backup_buffer = ft_strjoin("", "");
+		return ret_str;
+	}
+	free(*backup_buffer);
+	*backup_buffer = 0;
+	return NULL;
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*backup_buffer = 0;
+	char	*buffer;
 	char	*ret_str;
 	char	*tmp_str;
-	char	*buffer;
-	int i;
-	int	length;
-	if (fd < 0 || BUFFER_SIZE < 1)
-	{
-		return 0;
-	}
+	int		i;
+	
 	if(backup_buffer == 0)
 	{
-		backup_buffer = malloc(sizeof(char));
-		*backup_buffer = 0;
+		backup_buffer = (char *)malloc(1);
+		*backup_buffer = '\0';
 	}
-	while(*(backup_buffer + i) != '\n' && i < *(backup_buffer + i) != '\0')
+	i = 0;
+	while (*(backup_buffer + i) != '\n' && *(backup_buffer + i))
 		i ++;
-	if(i != (int)ft_strlen(backup_buffer))
+	if (i != (int)ft_strlen(backup_buffer))
 	{
 		tmp_str = backup_buffer;
 		ret_str = ft_substr(backup_buffer, 0, i + 1);
 		backup_buffer = ft_substr(backup_buffer, i + 1, ft_strlen(backup_buffer) - i - 1);
 		free(tmp_str);
-		return(ret_str);
+		return ret_str;
 	}
 	buffer = malloc(BUFFER_SIZE + 1);
 	while(1)
@@ -49,63 +59,66 @@ char	*get_next_line(int fd)
 		i = 0;
 		while(i < BUFFER_SIZE + 1)
 		{
-			*(buffer + i) = 0;
+			*(buffer + i) = '\0';
 			i ++;
 		}
-		length = read(fd, buffer, BUFFER_SIZE);
-		if(length == -1)
+		int check = read(fd, buffer, BUFFER_SIZE);
+		if(check == -1)
 		{
+			free(buffer);
 			free(backup_buffer);
-			free(buffer);
-			return 0;
+			backup_buffer = 0;
+			return NULL;
 		}
-		if(length == 0)
-		{
-			free(buffer);
-			if(*backup_buffer == 0)
-			{
-				free(backup_buffer);
-				return 0;
-			}
-			tmp_str = backup_buffer;
-			ret_str = ft_strjoin("", backup_buffer);
-			backup_buffer = ft_strjoin("", "");
-			free(tmp_str);
-			return ret_str;
-		}
+		// if(check == 0)
+		// {
+		// 	free(buffer);
+		// 	if(*backup_buffer != '\0')
+		// 	{
+		// 		ret_str = ft_strjoin("", backup_buffer);
+		// 		free(backup_buffer);
+		// 		backup_buffer = ft_strjoin("", "");
+		// 		return ret_str;
+		// 	}
+		// 	free(backup_buffer);
+		// 	backup_buffer = 0;
+		// 	return NULL;
+		// }
 		i = 0;
-		while(*(buffer + i) != '\n' && *(buffer + i))
+		while (*(buffer + i) != '\n' && i < check)
 			i ++;
-		if(i != (int)ft_strlen(buffer))
+		if (i != check)
 		{
 			tmp_str = ft_substr(buffer, 0, i + 1);
 			ret_str = ft_strjoin(backup_buffer, tmp_str);
 			free(tmp_str);
 			tmp_str = backup_buffer;
-			backup_buffer = ft_substr(backup_buffer, i + 1, ft_strlen(backup_buffer) - i - 1);
+			backup_buffer = ft_substr(buffer, i + 1, check - i - 1);
 			free(tmp_str);
 			free(buffer);
 			return ret_str;
 		}
 		tmp_str = backup_buffer;
 		backup_buffer = ft_strjoin(backup_buffer, buffer);
-		free(backup_buffer);
+		free(tmp_str);
 	}
 }
 
 #include<fcntl.h>
+#include<stdio.h>
 int main()
 {
 	int fd = open("./exam", O_RDONLY);
 	char *tmp;
-	//close(fd);
 	while(1)
 	{
 		tmp = get_next_line(fd);
 		if(tmp == 0)
 		{
 			//system("leaks a.out");
-			//printf("null");
+			printf("null pointer");
+			tmp = get_next_line(fd);
+			printf("출력시작---\n%s\n---출력끝\n", tmp);
 			return 0;
 		}
 		else
