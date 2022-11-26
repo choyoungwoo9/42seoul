@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/26 15:45:52 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:05:58 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,31 +63,31 @@ char	*read_newline_line(char *buf, char **save_b, int check, size_t index)
 	return (ret_str);
 }
 
-int	have_newline_in_buf(char **buf, char **save_b, char **ret_str, int fd)
+int	have_newline_in_buf(char *buf, char **save_b, char **ret_str, int fd)
 {
 	size_t	index;
 	char	*tmp_str;
-	int		check;
+	int		length;
 
 	index = -1;
 	while (++ index < ((size_t)BUFFER_SIZE + 1))
-		*(*buf + index) = '\0';
-	check = read(fd, *buf, (size_t)BUFFER_SIZE);
-	if (check == 0 || check == -1)
+		*(buf + index) = '\0';
+	length = read(fd, buf, (size_t)BUFFER_SIZE);
+	if (length == 0 || length == -1)
 	{
-		*ret_str = read_nothing_in_buf(*buf, save_b, check);
+		*ret_str = read_nothing_in_buf(buf, save_b, length);
 		return (1);
 	}
 	index = 0;
-	while (*(*buf + index) != '\n' && index < (size_t)check)
+	while (*(buf + index) != '\n' && index < (size_t)length)
 		index ++;
-	if (index != (size_t)check)
+	if (index != (size_t)length)
 	{
-		*ret_str = read_newline_line(*buf, save_b, check, index);
+		*ret_str = read_newline_line(buf, save_b, length, index);
 		return (1);
 	}
 	tmp_str = *save_b;
-	*save_b = ft_strjoin(*save_b, *buf);
+	*save_b = ft_strjoin(*save_b, buf);
 	free(tmp_str);
 	return (0);
 }
@@ -112,21 +112,7 @@ char	*get_next_line(int fd)
 	buf = malloc(((size_t)BUFFER_SIZE + 1));
 	while (1)
 	{
-		if (have_newline_in_buf(&buf, &save_b, &ret_str, fd))
+		if (have_newline_in_buf(buf, &save_b, &ret_str, fd))
 			return (ret_str);
 	}
 }
-
-// #include<fcntl.h>
-// #include<stdio.h>
-// int main()
-// {
-// 	int fd = open("./exam", O_RDONLY);
-// 	while(1)
-// 	{
-// 		char *tmp = get_next_line(fd);
-// 		if(tmp == 0)
-// 			return 0;
-// 		printf("%s", tmp);
-// 	}
-// }
