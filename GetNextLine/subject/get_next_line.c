@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/26 14:35:45 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/26 14:36:30 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*read_newline_line(char *buf, char **save_b, int check, int index)
 	char	*tmp_str;
 	char	*ret_str;
 
-	tmp_str = ft_substr(buf, 0, i + 1);
+	tmp_str = ft_substr(buf, 0, index + 1);
 	ret_str = ft_strjoin(*save_b, tmp_str);
 	free(tmp_str);
 	tmp_str = *save_b;
