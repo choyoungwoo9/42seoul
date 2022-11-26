@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:54:06 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/26 14:28:53 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:30:11 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub_ptr);
 }
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int	length;
+	size_t	length;
 
 	if (s == 0)
 		return (0);

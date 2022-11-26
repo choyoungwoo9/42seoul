@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/26 14:36:30 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:45:52 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*read_save_b(char **save_b, int index)
 	return (ret_str);
 }
 
-char	*read_nothing(char *buf, char **save_b, int check)
+char	*read_nothing_in_buf(char *buf, char **save_b, int check)
 {
 	char	*ret_str;
 
@@ -48,7 +48,7 @@ char	*read_nothing(char *buf, char **save_b, int check)
 	return (NULL);
 }
 
-char	*read_newline_line(char *buf, char **save_b, int check, int index)
+char	*read_newline_line(char *buf, char **save_b, int check, size_t index)
 {
 	char	*tmp_str;
 	char	*ret_str;
@@ -65,23 +65,23 @@ char	*read_newline_line(char *buf, char **save_b, int check, int index)
 
 int	have_newline_in_buf(char **buf, char **save_b, char **ret_str, int fd)
 {
-	int		index;
+	size_t	index;
 	char	*tmp_str;
 	int		check;
 
 	index = -1;
-	while (++ index < BUFFER_SIZE + 1)
+	while (++ index < ((size_t)BUFFER_SIZE + 1))
 		*(*buf + index) = '\0';
-	check = read(fd, *buf, BUFFER_SIZE);
+	check = read(fd, *buf, (size_t)BUFFER_SIZE);
 	if (check == 0 || check == -1)
 	{
-		*ret_str = read_nothing(*buf, save_b, check);
+		*ret_str = read_nothing_in_buf(*buf, save_b, check);
 		return (1);
 	}
 	index = 0;
-	while (*(*buf + index) != '\n' && index < check)
+	while (*(*buf + index) != '\n' && index < (size_t)check)
 		index ++;
-	if (index != check)
+	if (index != (size_t)check)
 	{
 		*ret_str = read_newline_line(*buf, save_b, check, index);
 		return (1);
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	static char	*save_b = 0;
 	char		*buf;
 	char		*ret_str;
-	int			index;
+	size_t		index;
 
 	if (save_b == 0)
 	{
@@ -109,10 +109,24 @@ char	*get_next_line(int fd)
 		index ++;
 	if (index != ft_strlen(save_b))
 		return (read_save_b(&save_b, index));
-	buf = malloc(BUFFER_SIZE + 1);
+	buf = malloc(((size_t)BUFFER_SIZE + 1));
 	while (1)
 	{
 		if (have_newline_in_buf(&buf, &save_b, &ret_str, fd))
 			return (ret_str);
 	}
 }
+
+// #include<fcntl.h>
+// #include<stdio.h>
+// int main()
+// {
+// 	int fd = open("./exam", O_RDONLY);
+// 	while(1)
+// 	{
+// 		char *tmp = get_next_line(fd);
+// 		if(tmp == 0)
+// 			return 0;
+// 		printf("%s", tmp);
+// 	}
+// }
