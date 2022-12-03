@@ -1,26 +1,19 @@
 {
 	"files.associations": {
-		"ratio": "c",
-		"libft.h": "c",
-		"ostream": "c",
-		"__functional_base": "c",
-		"__functional_base_03": "c",
-		"__hash_table": "c",
-		"__tuple": "c",
-		"algorithm": "c",
-		"array": "c",
-		"chrono": "c",
-		"type_traits": "c",
-		"functional": "c",
-		"iterator": "c",
-		"limits": "c",
-		"memory": "c",
-		"tuple": "c",
-		"utility": "c",
+		"__config": "c",
+		"locale": "c",
+		"stdlib.h": "c",
+		"stdio.h": "c",
+		"unistd.h": "c",
+		"fcntl.h": "c",
 		"__locale": "c",
 		"__string": "c",
 		"string": "c",
 		"string_view": "c",
-		"cstdarg": "c"
+		"get_next_line.h": "c",
+		"utils.h": "c",
+		"_types.h": "c",
+		"_null.h": "c",
+		"availability.h": "c"
 	}
 }
