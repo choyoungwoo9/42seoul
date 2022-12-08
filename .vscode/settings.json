@@ -14,6 +14,8 @@
 		"utils.h": "c",
 		"_types.h": "c",
 		"_null.h": "c",
-		"availability.h": "c"
+		"availability.h": "c",
+		"cdefs.h": "c",
+		"wait.h": "c"
 	}
 }
