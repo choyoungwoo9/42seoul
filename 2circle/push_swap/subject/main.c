@@ -3,60 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeong-u <joyeong-u@student.42.fr>        +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:10:07 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/08 23:01:52 by joyeong-u        ###   ########.fr       */
+/*   Updated: 2022/12/10 16:56:03 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stdio.h"
+#include "operation1.c"
+#include "operation2.c"
+#include "operation3.c"
+#include "util.c"
+#include "stack_operation.c"
+#include "print_function.c"
 
-void	push_top(t_stack **head, int number)
+int	check_push_argv(char *argv, t_stack **head, t_stack **tail)
 {
-	t_stack	*new_stack;
+	int	value;
 
-	new_stack = (t_stack *)malloc(sizeof(t_stack));
-	new_stack->number = number;
-	new_stack->next = *head;
-	new_stack->prev = NULL;
-	*head = new_stack;
+	if(!is_integer(argv, &value))
+		return 0;
+	if(is_duplicated(value, *head))
+		return 0;
+	push_bot(head, tail, value);
+	return 1;
 }
-
-void	pust_bot(t_stack **tail, int number)
-{
-	t_stack *new_stack;
-	
-	new_stack = (t_stack *)malloc(sizeof(t_stack));
-	new_stack->number = number;
-	new_stack->next = NULL;
-	new_stack->prev = 
-}
-
-
 
 int main(int argc, char **argv)
 {
-	t_stack	*stack_head;
-	t_stack	*stack_head;
+	t_stack	*stack_head_a;
+	t_stack	*stack_tail_a;
 
-	stack_head = NULL;
+	t_stack	*stack_head_b;
+	t_stack	*stack_tail_b;
 
-	push_top(&stack_head, 5);
-	push_top(&stack_head, 4);
-	push_top(&stack_head, 3);
-	push_top(&stack_head, 2);
-	push_top(&stack_head, 1);
+	stack_head_a = NULL;
+	stack_tail_a = NULL;
+	stack_head_b = NULL;
+	stack_tail_b = NULL;
 
-	//1 -> 2 -> 3 -> 4 -> 5
-
-	push_bot(&stack_head, 10);
-	//pop_top(&stack_head);
-	//pop_bot(&stack_head);
-	while(stack_head)
+	while(*(++argv))
 	{
-		printf("%d\n", stack_head->number);
-		stack_head = stack_head->next;
+		printf("argv : %s\n", *argv);
+		if(!check_push_argv(*argv, &stack_head_a, &stack_tail_a))
+		{
+			printf("Error\n");
+			return (0);
+		}
 	}
+	print_stack(stack_head_a,stack_tail_a,stack_head_b,stack_tail_b);
+	//push_bot(&stack_head_a);
+	//system("leaks a.out");	
 }

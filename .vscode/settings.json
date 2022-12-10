@@ -16,6 +16,7 @@
 		"_null.h": "c",
 		"availability.h": "c",
 		"cdefs.h": "c",
-		"wait.h": "c"
+		"wait.h": "c",
+		"push_swap.h": "c"
 	}
 }
