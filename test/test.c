@@ -46,6 +46,6 @@ int main(void)
 	// 	test = malloc(UINT_MAX);
 	// }
 	// printf("%p\n", test);
-	char *fuck = "elephant";
-	*fuck = 3;
+	int i = 0%0;
+	
 }
