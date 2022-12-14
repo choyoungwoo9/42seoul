@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:32:56 by youngwch          #+#    #+#             */
-/*   Updated: 2022/11/26 15:33:09 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/13 10:00:09 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
+
 #endif

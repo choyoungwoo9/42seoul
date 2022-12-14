@@ -27,25 +27,39 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <stdarg.h>
+#include <unistd.h>
+
+int printf(const char *format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+	while(*format)
+	{
+		if(*format == '%')
+		{
+			format ++;
+			if(*format == 'd')
+			{
+				int tmp = va_arg(ap, int);
+				write(1, "32", 2);
+			}
+			if(*format == 'c')
+			{
+				char tmp = va_arg(ap, int);
+				write(1, &tmp, 1);
+			}
+		}
+		else
+			write(1, format, 1);
+		format ++;
+	}
+	va_end(ap);
+	return 0;
+}
 
 int main(void)
 {
-	// void	*test;
-
-	// test = malloc(UINT_MAX);
-	// while (test)
-	// {
-	// 	printf("%p\n", test);
-	// 	printf("UINT_MAX : %u\n", UINT_MAX);
-	// 	test = malloc(UINT_MAX);
-	// }
-
-	// while (test)
-	// {
-	// 	printf("%p\n", test);
-	// 	test = malloc(UINT_MAX);
-	// }
-	// printf("%p\n", test);
-	int i = 0%0;
+	printf("%daa%c", 32, 'z');
 	
 }

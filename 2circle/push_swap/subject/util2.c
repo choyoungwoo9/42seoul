@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:41:39 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/12 15:44:12 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:25:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,16 @@ void	quick_sort(int *ar, int length)
 				ar[j + 1] = tmp;
 			}
 		}
+	}
+}
+
+void	free_all_list(t_stack *list)
+{
+	t_stack *tmp;
+	while(list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
 	}
 }

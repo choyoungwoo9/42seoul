@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:53:45 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/12 16:00:06 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:07:05 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	find_pivot(t_stack *a_head)
 		length ++;
 	}
 	quick_sort(ar, length);
-	pivot = ar[length/2];
+	if(length)
+		pivot = *(ar + length/2); //중간값
 	free(ar);
 	return pivot;
 }
