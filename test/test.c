@@ -30,36 +30,18 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int printf(const char *format, ...)
+int	ft_abs(int num)
 {
-	va_list ap;
-	va_start(ap, format);
-	while(*format)
-	{
-		if(*format == '%')
-		{
-			format ++;
-			if(*format == 'd')
-			{
-				int tmp = va_arg(ap, int);
-				write(1, "32", 2);
-			}
-			if(*format == 'c')
-			{
-				char tmp = va_arg(ap, int);
-				write(1, &tmp, 1);
-			}
-		}
-		else
-			write(1, format, 1);
-		format ++;
-	}
-	va_end(ap);
-	return 0;
+	long long lnum;
+	
+	lnum = num;
+	if(lnum < 0)
+		lnum = lnum * -1;
+	return lnum;
 }
 
 int main(void)
 {
-	printf("%daa%c", 32, 'z');
+	printf("%d", ft_abs(-324234));
 	
 }

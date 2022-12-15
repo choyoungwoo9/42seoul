@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:01:29 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/12 15:42:58 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:01:20 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 	}
 	if(!is_valid_digit_length(str, &digit))
 		return 0;
-	if(digit > 10)
+	if(digit > 10 || digit == 0)
 		return 0;
 	result = reculsive_atoll(str, digit, 1, sign);
 	*tmp_ll = sign * result;
@@ -63,8 +63,10 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 int	is_integer(char *argv, int *value)
 {
 	long long	tmp_ll;
+	tmp_ll = INT32_MAX + (long long)1;
 	if(!ft_atoll(argv, &tmp_ll))
 		return 0;
+	//printf("tmp_ll%lld\n", tmp_ll);
 	if(tmp_ll < INT32_MIN || tmp_ll > INT32_MAX)
 		return (0);
 	*value = (int)tmp_ll;

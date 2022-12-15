@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:41:39 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/14 16:25:40 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:38:48 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,37 @@ void	quick_sort(int *ar, int length)
 	}
 }
 
-void	free_all_list(t_stack *list)
+int	ft_abs(int num)
 {
-	t_stack *tmp;
-	while(list)
+	long long lnum;
+	
+	lnum = num;
+	if(lnum < 0)
+		lnum = lnum * -1;
+	return lnum;
+}
+
+int	find_pivot(t_stack *a_head)
+{
+	t_stack *tmp_node;
+	int	length;
+	int	*ar;
+	int pivot;
+
+	tmp_node = a_head;
+	length = find_list_length(a_head);
+	ar = (int *)malloc(sizeof(int) * length);
+	tmp_node = a_head;
+	length = 0;
+	while(tmp_node)
 	{
-		tmp = list;
-		list = list->next;
-		free(tmp);
+		*(ar + length) = tmp_node->number;
+		tmp_node = tmp_node->next;
+		length ++;
 	}
+	quick_sort(ar, length);
+	if(length)
+		pivot = *(ar + length/2);
+	free(ar);
+	return pivot;
 }

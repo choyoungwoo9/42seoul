@@ -6,39 +6,42 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 11:45:22 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/14 17:07:13 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:03:28 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	operation_sa(t_stack *stack_a)
+static void	swap_operation(t_stack *stack)
 {
 	int tmp;
-	if(!(stack_a) || !(stack_a->next))
+	if(!(stack) || !(stack->next))
 		return ;
-	tmp = stack_a->number;
-	stack_a->number = stack_a->next->number;
-	stack_a->next->number = tmp;
+	tmp = stack->number;
+	stack->number = stack->next->number;
+	stack->next->number = tmp;	
+}
+
+void	operation_sa(t_stack *stack_a)
+{
+	swap_operation(stack_a);
+	printf("sa\n");
 }
 
 void	operation_sb(t_stack *stack_b)
 {
-	int tmp;
-	if(!stack_b || !(stack_b->next))
-		return ;
-	tmp = stack_b->number;
-	stack_b->number = stack_b->next->number;
-	stack_b->next->number = tmp;
+	swap_operation(stack_b);
+	printf("sb\n");
 }
 
 void	operation_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	operation_sa(stack_a);
-	operation_sa(stack_b);
+	swap_operation(stack_a);
+	swap_operation(stack_b);
+	printf("ss\n");
 }
 
-void	operation_pa(t_stack **a_head, t_stack **a_tail, t_stack **b_head, t_stack **b_tail)
+static void	push_operation(t_stack **a_head, t_stack **a_tail, t_stack **b_head, t_stack **b_tail)
 {
 	int tmp_num;
 	
@@ -49,13 +52,14 @@ void	operation_pa(t_stack **a_head, t_stack **a_tail, t_stack **b_head, t_stack 
 	push_top(a_head, a_tail, tmp_num);
 }
 
+void	operation_pa(t_stack **a_head, t_stack **a_tail, t_stack **b_head, t_stack **b_tail)
+{
+	push_operation(a_head, a_tail, b_head, b_tail);
+	printf("pa\n");
+}
+
 void	operation_pb(t_stack **a_head, t_stack **a_tail, t_stack **b_head, t_stack **b_tail)
 {
-	int tmp_num;
-	
-	if (!(*a_head) || !(*a_tail))
-		return ;
-	tmp_num = (*a_head)->number;
-	pop_top(a_head, a_tail);
-	push_top(b_head, b_tail, tmp_num);
+	push_operation(b_head, b_tail, a_head, a_tail);
+	printf("pb\n");
 }
