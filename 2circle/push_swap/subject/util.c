@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:01:29 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/15 16:01:20 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:40:04 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	is_valid_digit_length(const char *str, int *digit)
 	int	index;
 
 	index = 0;
-	while(*(str + index))
+	while (*(str + index))
 	{
-		if(!(*(str + index) >= '0' && *(str + index) <= '9'))
-			return 0;
+		if (!(*(str + index) >= '0' && *(str + index) <= '9'))
+			return (0);
 		index ++;
 	}
 	*digit = index;
@@ -46,15 +46,16 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 	long long	result;
 
 	sign = 1;
-	if (*(str) == '-')
+	if (*(str) == '-' || *(str) == '+')
 	{
-		sign = -1;
+		if(*(str) == '-')
+			sign = -1;
 		str ++;
 	}
-	if(!is_valid_digit_length(str, &digit))
-		return 0;
-	if(digit > 10 || digit == 0)
-		return 0;
+	if (!is_valid_digit_length(str, &digit))
+		return (0);
+	if (digit > 10 || digit == 0)
+		return (0);
 	result = reculsive_atoll(str, digit, 1, sign);
 	*tmp_ll = sign * result;
 	return (1);
@@ -63,11 +64,11 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 int	is_integer(char *argv, int *value)
 {
 	long long	tmp_ll;
+
 	tmp_ll = INT32_MAX + (long long)1;
-	if(!ft_atoll(argv, &tmp_ll))
-		return 0;
-	//printf("tmp_ll%lld\n", tmp_ll);
-	if(tmp_ll < INT32_MIN || tmp_ll > INT32_MAX)
+	if (!ft_atoll(argv, &tmp_ll))
+		return (0);
+	if (tmp_ll < INT32_MIN || tmp_ll > INT32_MAX)
 		return (0);
 	*value = (int)tmp_ll;
 	return (1);
@@ -75,12 +76,10 @@ int	is_integer(char *argv, int *value)
 
 int	is_duplicated(int value, t_stack *head)
 {
-	while(head)
+	while (head)
 	{
-		if(head->number == value)
-		{
+		if (head->number == value)
 			return (1);
-		}
 		head = head->next;
 	}
 	return (0);
