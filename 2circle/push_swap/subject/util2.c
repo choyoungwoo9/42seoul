@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:41:39 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 17:12:10 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:46:10 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,26 @@ int	find_pivot(t_stack *a_head)
 		length ++;
 	}
 	bubble_sort(ar, length);
+	pivot = 0;
 	if (length)
 		pivot = *(ar + length / 2);
 	free(ar);
 	return (pivot);
+}
+
+void	sorted_check(t_stack *a_head, t_stack *b_head)
+{
+	t_stack		*tmp_stack;
+	int			prev_num;
+
+	tmp_stack = a_head;
+	prev_num = INT32_MIN;
+	while (tmp_stack && !b_head)
+	{
+		if (prev_num > tmp_stack->number)
+			return ;
+		prev_num = tmp_stack->number;
+		tmp_stack = tmp_stack->next;
+	}
+	exit (0);
 }

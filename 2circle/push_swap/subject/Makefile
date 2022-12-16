@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c greedy_alog.c greedy_counter.c \
-		operation1.c operation1.c operation1.c operation1.c \
+SRCS = main.c greedy_algo.c greedy_counter.c \
+		operation1.c operation2.c operation3.c operation4.c \
 		primary_logic.c stack_operation.c util.c util2.c
 
 NAME = push_swap

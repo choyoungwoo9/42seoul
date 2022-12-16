@@ -1,10 +1,10 @@
 rm -f push_swap
-cc -fsanitize=address main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c -o push_swap 
-# ARGS="$(seq 33 | sort -R | xargs)"
-# echo $ARGS
-# ./push_swap $ARGS 
-# ./push_swap $ARGS | wc -l | tr -d ' '
-# ./push_swap $ARGS | ./checker_Mac $ARGS 
+cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c -o push_swap 
+ARGS="$(seq 33 | xargs)"
+echo $ARGS
+./push_swap $ARGS 
+./push_swap $ARGS | wc -l | tr -d ' '
+./push_swap $ARGS | ./checker_Mac $ARGS 
 
 # ARGS="-2147483648 -2147483646 -2147483645 -2147483644 -2147483643 + 2147483642 2147483647"
 # echo $ARGS
@@ -62,4 +62,4 @@ cc -fsanitize=address main.c greedy_algo.c greedy_counter.c operation1.c operati
 # # FAILARGS="9 2 6 4 10 7 3 12 1 11 5 8 13"
 # ./a.out $FAILARGS
 # ./a.out $FAILARGS | ./checker_Mac $FAILARGS 
-rm -f push_swap
+#rm -f push_swap

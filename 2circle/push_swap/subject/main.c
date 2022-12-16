@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:10:07 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 17:29:05 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:51:12 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_push_argv(char *argv, t_stack_root *root)
+static int	check_push_argv(char *argv, t_stack_root *root)
 {
 	int	value;
 
@@ -39,6 +39,8 @@ int	main(int argc, char **argv)
 	root.tail_a = NULL;
 	root.head_b = NULL;
 	root.tail_b = NULL;
+	// if (argc < 1)
+	// 	return (0);
 	while (*(++argv))
 	{
 		if (!check_push_argv(*argv, &root))
@@ -47,6 +49,7 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 	}
+	sorted_check(root.head_a, root.head_b);
 	greedy_algo(&root);
 	//system("Leaks push_swap");
 }

@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:59:54 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 17:19:58 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:41:31 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	partition(t_stack_root *root);
 void	align_stack(t_stack_root *root);
 int		find_pivot(t_stack *a_head);
 void	rotate_and_push(t_stack_root *root);
+void	sorted_check(t_stack *a_head, t_stack *b_head);
 #endif
