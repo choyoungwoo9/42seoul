@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 10:58:51 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/23 15:47:52 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:12:44 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	is_have_at_least_one_coin(char **maps)
 		}
 		i ++;
 	}
-	if (count > 1)
+	if (count >= 1)
 		return (1);
 	else
 		return (0);

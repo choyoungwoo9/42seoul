@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:59:54 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 19:41:31 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/17 16:47:58 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -30,8 +30,6 @@ typedef struct s_stack_root
 	t_stack	*head_b;
 	t_stack	*tail_b;
 }	t_stack_root;
-
-void	print_stack(t_stack_root root);
 
 void	push_top(t_stack **head, t_stack **tail, int number);
 void	push_bot(t_stack **head, t_stack **tail, int number);
@@ -64,4 +62,5 @@ void	align_stack(t_stack_root *root);
 int		find_pivot(t_stack *a_head);
 void	rotate_and_push(t_stack_root *root);
 void	sorted_check(t_stack *a_head, t_stack *b_head);
+void	sort_few_stack(t_stack **head, t_stack **tail);
 #endif

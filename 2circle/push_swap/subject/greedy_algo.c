@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:53:45 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 16:33:54 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:22:31 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	find_min_oper_count(t_stack *a_head, t_stack *b_head)
 	return (min_oper_count);
 }
 
-void	dup_optimizing(t_stack_root *root, int *ra_rra_count, int *rb_rrb_count)
+static void	dup_optimizing(t_stack_root *root,
+	int *ra_rra_count, int *rb_rrb_count)
 {
 	if ((*ra_rra_count) * (*rb_rrb_count) < 0)
 		return ;
@@ -60,7 +61,6 @@ void	dup_optimizing(t_stack_root *root, int *ra_rra_count, int *rb_rrb_count)
 static void	rotate_min_oper(t_stack_root *root
 	, int ra_rra_count, int rb_rrb_count)
 {
-	dup_optimizing(root, &ra_rra_count, &rb_rrb_count);
 	while (ra_rra_count)
 	{
 		if (ra_rra_count > 0)

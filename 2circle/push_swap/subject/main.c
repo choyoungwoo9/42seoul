@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:10:07 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 19:51:12 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:08:02 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	check_push_argv(char *argv, t_stack_root *root)
 void	greedy_algo(t_stack_root *root)
 {
 	partition(root);
+	sort_few_stack(&root->head_a, &root->tail_a);
 	rotate_and_push(root);
 	align_stack(root);
 }
@@ -39,17 +40,17 @@ int	main(int argc, char **argv)
 	root.tail_a = NULL;
 	root.head_b = NULL;
 	root.tail_b = NULL;
-	// if (argc < 1)
-	// 	return (0);
+	if (argc < 2)
+		return (0);
 	while (*(++argv))
 	{
 		if (!check_push_argv(*argv, &root))
 		{
-			printf("Error\n");
+			write(1, "Error\n", 6);
 			return (0);
 		}
 	}
+	sort_few_stack(&root.head_a, &root.tail_a);
 	sorted_check(root.head_a, root.head_b);
 	greedy_algo(&root);
-	//system("Leaks push_swap");
 }

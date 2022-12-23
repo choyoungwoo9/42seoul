@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:13:32 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 16:56:32 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/17 21:57:27 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_stack(t_stack_root root)
 {
-	t_stack	*tmp;
+	t_stack	*tmp;//ddfadfasd
 
 	tmp = root.head_a;
 	printf("\n앞에서 시작 \n");

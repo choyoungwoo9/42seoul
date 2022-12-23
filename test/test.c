@@ -29,19 +29,22 @@
 #include <limits.h>
 #include <stdarg.h>
 #include <unistd.h>
-
-int	ft_abs(int num)
-{
-	long long lnum;
-	
-	lnum = num;
-	if(lnum < 0)
-		lnum = lnum * -1;
-	return lnum;
-}
+#include <errno.h>
+#include <string.h>
 
 int main(void)
 {
-	printf("%d", ft_abs(-324234));
-	
+	char *errmsg;
+	int i;
+	FILE* pFile;
+	pFile = fopen("unexist.ent", "rb");
+	// if (pFile == NULL)
+	// 	perror("The following error occurred");
+    // printf("== Error Message List ==\n");
+    // for(i=0;i<45;i++)
+    // {
+    //     errmsg = strerror(i);//에러 메시지 확인
+	// 	perror(errmsg);
+        //printf("<%d>:%s\n",i,errmsg);//에러 번호와 에러 메시지 출력
+    //}
 }

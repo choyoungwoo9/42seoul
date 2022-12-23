@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:01:29 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 17:40:04 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/17 16:18:47 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	is_valid_digit_length(const char *str, int *digit)
 	index = 0;
 	while (*(str + index))
 	{
-		if (!(*(str + index) >= '0' && *(str + index) <= '9'))
+		if (!ft_isdigit(*(str + index)))
 			return (0);
 		index ++;
 	}
@@ -48,7 +48,7 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 	sign = 1;
 	if (*(str) == '-' || *(str) == '+')
 	{
-		if(*(str) == '-')
+		if (*(str) == '-')
 			sign = -1;
 		str ++;
 	}

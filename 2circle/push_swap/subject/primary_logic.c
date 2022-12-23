@@ -6,11 +6,36 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:52:36 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/16 16:55:26 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:55:09 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	partition(t_stack_root *root)
+{
+	t_stack	*tmp_node;
+	int		pivot;
+
+	pivot = find_pivot(root->head_a);
+	tmp_node = root->head_a;
+	while (find_list_length(root->head_a) > find_list_length(root->head_b)
+		&& find_list_length(root->head_a) > 3)
+	{
+		if (tmp_node->number <= pivot)
+			operation_pb(&root->head_a,
+				&root->tail_a, &root->head_b, &root->tail_b);
+		else
+			operation_ra(&root->head_a, &root->tail_a);
+		tmp_node = root->head_a;
+	}
+	while (find_list_length(root->head_a) > 3)
+	{
+		operation_pb(&root->head_a,
+			&root->tail_a, &root->head_b, &root->tail_b);
+		tmp_node = root->head_a;
+	}
+}
 
 int	find_rotate_count(t_stack *a_head)
 {
@@ -66,30 +91,4 @@ void	align_stack(t_stack_root *root)
 		return ;
 	ra_rra_count = find_rotate_count(tmp_stack);
 	rotate_a(ra_rra_count, &root->head_a, &root->tail_a);
-}
-
-void	partition(t_stack_root *root)
-{
-	t_stack	*tmp_node;
-	int		count;
-	int		pivot;
-
-	pivot = find_pivot(root->head_a);
-	tmp_node = root->head_a;
-	count = find_list_length(root->head_a);
-	while (--count >= 0 || count >= find_list_length(root->head_b))
-	{
-		if (tmp_node->number < pivot)
-			operation_pb(&root->head_a,
-				&root->tail_a, &root->head_b, &root->tail_b);
-		else
-			operation_ra(&root->head_a, &root->tail_a);
-		tmp_node = root->head_a;
-	}
-	while (tmp_node->next)
-	{
-		operation_pb(&root->head_a,
-			&root->tail_a, &root->head_b, &root->tail_b);
-		tmp_node = root->head_a;
-	}
 }

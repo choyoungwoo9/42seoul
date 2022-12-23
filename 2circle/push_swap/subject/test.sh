@@ -1,10 +1,13 @@
 rm -f push_swap
-cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c -o push_swap 
-ARGS="$(seq 33 | xargs)"
-echo $ARGS
-./push_swap $ARGS 
-./push_swap $ARGS | wc -l | tr -d ' '
-./push_swap $ARGS | ./checker_Mac $ARGS 
+# cc -fsanitize=address main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c sort_few_stack.c -o push_swap 
+cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c sort_few_stack.c libft/ft_isdigit.c -o push_swap 
+# ARGS="4 67 3 87 23"
+# ARGS="$(seq 10 | sort | xargs)"
+# ARGS="4 67 3 87 23"
+# echo $ARGS
+# ./push_swap $ARGS 
+# ./push_swap $ARGS | wc -l | tr -d ' '
+# ./push_swap $ARGS | ./checker_Mac $ARGS 
 
 # ARGS="-2147483648 -2147483646 -2147483645 -2147483644 -2147483643 + 2147483642 2147483647"
 # echo $ARGS
@@ -30,31 +33,31 @@ echo $ARGS
 # ./push_swap 1 "2 3" 1
 # ./checker_Mac 1 "2 3" 1
 
-# max=0
-# min=1000000
-# for var in {1..100}
-# do
-# 	ARGS="$(seq 100 | sort -R | xargs)"
+max=0
+min=1000000
+for var in {1..100}
+do
+	ARGS="$(seq 100 | sort -R | xargs)"
 
-# 	# ./push_swap $ARGS | ./checker_Mac $ARGS
-# 	# ./push_swap $ARGS | wc -l | tr -d ' '
-# 	str=$(./push_swap $ARGS | ./checker_Mac $ARGS)
-# 	tmp=$(./push_swap $ARGS | wc -l | tr -d ' ')
+	# ./push_swap $ARGS | ./checker_Mac $ARGS
+	# ./push_swap $ARGS | wc -l | tr -d ' '
+	str=$(./push_swap $ARGS | ./checker_Mac $ARGS)
+	tmp=$(./push_swap $ARGS | wc -l | tr -d ' ')
 
-# 	if [ $str == "KO" ]
-# 	then
-# 		echo $ARGS
-# 	else
-# 		echo $str
-# 		./push_swap $ARGS | wc -l | tr -d ' '
-# 	fi
+	if [ $str == "KO" ]
+	then
+		echo $ARGS
+	else
+		echo $str
+		./push_swap $ARGS | wc -l | tr -d ' '
+	fi
 
-# 	if [ $((tmp)) -gt $((max)) ]
-# 	then
-# 		max=$tmp
-# 	fi
-# done
-# echo $max
+	if [ $((tmp)) -gt $((max)) ]
+	then
+		max=$tmp
+	fi
+done
+echo $max
 
 #rm -f push_swap
 # FAILARGS="8  11  4  24  14  30  29  12  27  1  5 16 25 20 28 17 3 21 2 7 26 10 19 15 13 6 9 23 18 22"

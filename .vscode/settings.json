@@ -36,6 +36,9 @@
 		"utility": "c",
 		"__bit_reference": "c",
 		"bitset": "c",
-		"unordered_map": "c"
+		"unordered_map": "c",
+		"mlx.h": "c",
+		"so_long.h": "c",
+		"libft.h": "c"
 	}
 }
