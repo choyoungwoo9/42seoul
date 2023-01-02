@@ -39,6 +39,16 @@
 		"unordered_map": "c",
 		"mlx.h": "c",
 		"so_long.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"errno.h": "c",
+		"string.h": "c",
+		"cstdio": "c",
+		"ft_strlen.c": "cpp",
+		"ft_strnstr.c": "cpp",
+		"pipex.h": "c",
+		"complex": "c",
+		"pipex_bonus.h": "c",
+		"sstream": "c",
+		"get_next_line_bonus.h": "c"
 	}
 }

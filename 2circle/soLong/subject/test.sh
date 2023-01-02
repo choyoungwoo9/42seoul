@@ -5,26 +5,60 @@
 # gcc *.c -I. -Lmlx -lmlx -framework OpenGL -framework Appkit
 #-frameword OpenGL -framework AppKit -lz
 ARG="not_valid"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_not_rectangular_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_empty_map.ber"	
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_so_small_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_not_surrouned_wall_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_another_component_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_not_one_door_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_not_one_pocketmon_map.ber.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_zero_coin_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 ARG="invalid_path_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
+ARG="invalid_no_way_coin_blocked_door.ber"
+echo $ARG
+./so_long $ARG
+echo
+ARG="invalid_newline_map.ber"
+echo $ARG
+./so_long $ARG
+echo
+ARG="invalid_last_newline_map.ber"
+echo $ARG
+./so_long $ARG
+echo
 ARG="valid_map.ber"
+echo $ARG
 ./so_long $ARG
+echo
 # ARG="valid_map2.ber"
 # ./so_long $ARG

@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:44:02 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/23 11:54:12 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/24 16:48:56 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	count_coin_by_dfs(char **map_copy, int p_row,
 	int p_column, int *coin_coint)
 {
 	if (*(*(map_copy + p_row) + p_column) == '1')
+		return ;
+	if (*(*(map_copy + p_row) + p_column) == 'E')
 		return ;
 	if (*(*(map_copy + p_row) + p_column) == 'C')
 		(*coin_coint)++;

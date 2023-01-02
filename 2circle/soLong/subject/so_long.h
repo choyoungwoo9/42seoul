@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:58:13 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/23 15:45:39 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/25 10:50:12 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@
 # define EVENT_ON_DESTROY 17
 # define GROUND_PATH "textures/ground.xpm"
 # define LAVA_PATH "textures/lava.xpm"
-# define COIN_PATH "textures/coin.xpm"
 # define COIN_SMALL_PATH "textures/coin_small(30).xpm"
 # define DOOR_PATH "textures/door.xpm"
 # define POCKETMON_FRONT_PATH "textures/pocketmon_front.xpm"
-# define POCKETMON_BACK_PATH "textures/pocketmon_back.xpm"
-# define POCKETMON_LEFT_PATH "textures/pocketmon_left.xpm"
-# define POCKETMON_RIGHT_PATH "textures/pocketmon_right.xpm"
 
 typedef struct s_mlx_data {
 	void	*mlx;

@@ -35,7 +35,7 @@ cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c 
 
 max=0
 min=1000000
-for var in {1..100}
+for var in {1..1}
 do
 	ARGS="$(seq 100 | sort -R | xargs)"
 

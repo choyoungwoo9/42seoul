@@ -6,11 +6,27 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:57:13 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/23 17:33:21 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/25 10:53:30 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	check_valid_newline(char *one_line_map)
+{
+	int	i;
+
+	i = -1;
+	while (*(one_line_map + ++i))
+	{
+		if (*(one_line_map + i) == '\n' && *(one_line_map + i + 1) == '\n')
+			print_error_exit("NOT_VALID_NEWLINE");
+	}
+	if (i != 0 && *(one_line_map + i - 1) == '\n')
+		print_error_exit("LAST_MUST_NOT_NEWLINE");
+	if (*(one_line_map) == '\n')
+		print_error_exit("FIRST_MUST_NOT_NEWLINE");
+}
 
 void	read_file(int fd, t_game_data *game_data)
 {
@@ -30,6 +46,7 @@ void	read_file(int fd, t_game_data *game_data)
 		free(tmp);
 		free(line);
 	}
+	check_valid_newline(one_line_map);
 	game_data->maps = ft_split(one_line_map, '\n');
 	free(one_line_map);
 }
@@ -41,13 +58,13 @@ void	ber_name_check(char *arg)
 	i = ft_strlen(arg);
 	if (i < 4)
 		print_error_exit("FILE_MUST_MIN_.BER");
-	if (*(arg - i -1) == 'r')
+	if (*(arg + i -1) != 'r')
 		print_error_exit("FILE_MUST_MIN_.BER");
-	if (*(arg - i -2) == 'e')
+	if (*(arg + i -2) != 'e')
 		print_error_exit("FILE_MUST_MIN_.BER");
-	if (*(arg - i -3) == 'b')
+	if (*(arg + i -3) != 'b')
 		print_error_exit("FILE_MUST_MIN_.BER");
-	if (*(arg - i -4) == '.')
+	if (*(arg + i -4) != '.')
 		print_error_exit("FILE_MUST_MIN_.BER");
 }
 

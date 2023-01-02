@@ -6,12 +6,12 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 09:40:28 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/30 14:10:09 by youngwch         ###   ########.fr       */
+/*   Updated: 2022/12/31 15:12:24 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
 
+#include "stdlib.h"
 static int	get_word_length(char const *s, char c)
 {
 	int	length;
@@ -94,4 +94,11 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	}
 	return (retptr);
+}
+#include<stdio.h>
+int main()
+{
+	char **a = ft_split("", ' ');
+	printf("%p\n", a);
+	printf("%p\n", *a);
 }

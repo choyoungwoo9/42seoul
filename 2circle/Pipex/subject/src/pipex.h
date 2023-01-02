@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 15:04:52 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/01 16:57:38 by youngwch         ###   ########.fr       */
+/*   Created: 2022/12/30 15:46:14 by youngwch          #+#    #+#             */
+/*   Updated: 2022/12/31 16:30:57 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "../libft/libft.h"
 
-	length = 0;
-	while (*(s + length) != 0)
-		length ++;
-	return (length);
-}
+char	**make_command_path(char *command, char **envp);
+void	exit_with_perror(char *message);
+void	exit_with_message(char *message);
+int		open_file(char *file_name, int option);
+#endif
