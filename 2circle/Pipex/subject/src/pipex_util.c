@@ -6,19 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:45:45 by youngwch          #+#    #+#             */
-/*   Updated: 2022/12/31 16:30:50 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:54:32 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 void	exit_with_perror(char *message)
-{
-	perror(message);
-	exit(1);
-}
-
-void	exit_with_message(char *message)
 {
 	perror(message);
 	exit(1);

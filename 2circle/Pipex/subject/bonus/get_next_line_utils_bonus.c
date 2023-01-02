@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:54:06 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/02 09:57:20 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:52:06 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ size_t	gnl_ft_strlen(const char *s)
 	while (*(s + length) != 0)
 		length ++;
 	return (length);
+}
+
+char	*length_err_check(char *buf, char **save_b, int length)
+{
+	if (length == -1)
+	{
+		perror("read");
+		exit(1);
+	}
+	return (read_nothing_in_buf(buf, save_b, length));
 }

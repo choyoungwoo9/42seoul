@@ -5,8 +5,8 @@
 #cc src/pipex.c src/pipex_make_command_path.c src/pipex_util.c src/libft/libft.a -o pipex
 
 # infile="file_a"
-# cmd1="ccc"
-# cmd2="ls"
+# cmd1="cat"
+# cmd2="lls"
 # outfile="file_b"
 
 # < $infile $cmd1 | $cmd2 > $outfile

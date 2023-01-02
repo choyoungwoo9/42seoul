@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:45:45 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/02 08:27:08 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:23:19 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **envp)
 	pid_t	fork_fd;
 
 	if (argc != 5)
-		exit_with_message("argc is must 4");
+		exit_with_perror("argc is must 4");
 	pipe(pipe_fd);
 	fork_fd = fork();
 	if (fork_fd == 0)

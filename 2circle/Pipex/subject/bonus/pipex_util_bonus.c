@@ -6,19 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:45:45 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/02 10:54:59 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:56:51 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
 void	exit_with_perror(char *message)
-{
-	perror(message);
-	exit(1);
-}
-
-void	exit_with_message(char *message)
 {
 	perror(message);
 	exit(1);
@@ -38,4 +32,15 @@ int	open_file(char *file_name, int option)
 		exit_with_perror("open");
 	free(file_path);
 	return (fd);
+}
+
+void	pipex_putstr_fd(char *s, int fd)
+{
+	int	length;
+
+	length = 0;
+	while (*(s + length))
+		length ++;
+	if (write(fd, s, length) == -1)
+		exit_with_perror("write");
 }

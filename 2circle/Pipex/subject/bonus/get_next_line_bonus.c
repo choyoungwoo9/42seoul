@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:48:36 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/02 10:42:36 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:04:44 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*read_save_b(char **save_b, int index)
 	tmp_str = *save_b;
 	ret_str = gnl_ft_substr(*save_b, 0, index + 1);
 	*save_b = gnl_ft_substr(*save_b, index + 1,
-		gnl_ft_strlen(*save_b) - index - 1);
+			gnl_ft_strlen(*save_b) - index - 1);
 	free(tmp_str);
 	return (ret_str);
 }
@@ -76,7 +76,7 @@ int	have_newline_in_buf(char *buf, char **save_b, char **ret_str, int fd)
 	length = read(fd, buf, (size_t)BUFFER_SIZE);
 	if (length == 0 || length == -1)
 	{
-		*ret_str = read_nothing_in_buf(buf, save_b, length);
+		*ret_str = length_err_check(buf, save_b, length);
 		return (1);
 	}
 	index = 0;
