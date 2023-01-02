@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm file_b
-rm file_bb
+# rm file_b
+# rm file_bb
 
 rm pipex
 cc pipex_bonus.c -o pipex
@@ -21,8 +21,8 @@ cc pipex_bonus.c -o pipex
 #이경우를 사용할 수 있는 방법을 강9해보자
 
 LIMIT="LIMIT"
-cmd1="cat"
-cmd2="wc"
+cmd1="grep a"
+cmd2="cat"
 outfile="file_b"
 
 #$cmd1 <<< $LIMIT | $cmd2
