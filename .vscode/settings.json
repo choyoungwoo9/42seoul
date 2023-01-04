@@ -49,6 +49,7 @@
 		"complex": "c",
 		"pipex_bonus.h": "c",
 		"sstream": "c",
-		"get_next_line_bonus.h": "c"
+		"get_next_line_bonus.h": "c",
+		"pthread.h": "c"
 	}
 }
