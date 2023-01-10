@@ -50,6 +50,12 @@
 		"pipex_bonus.h": "c",
 		"sstream": "c",
 		"get_next_line_bonus.h": "c",
-		"pthread.h": "c"
+		"pthread.h": "c",
+		"philosopher.h": "c",
+		"_pthread_types.h": "c",
+		"__debug": "c",
+		"__mutex_base": "c",
+		"mutex": "c",
+		"vector": "c"
 	}
 }

@@ -38,13 +38,5 @@ int main(void)
 	int i;
 	FILE* pFile;
 	pFile = fopen("unexist.ent", "rb");
-	// if (pFile == NULL)
-	// 	perror("The following error occurred");
-    // printf("== Error Message List ==\n");
-    // for(i=0;i<45;i++)
-    // {
-    //     errmsg = strerror(i);//에러 메시지 확인
-	// 	perror(errmsg);
-        //printf("<%d>:%s\n",i,errmsg);//에러 번호와 에러 메시지 출력
-    //}
+
 }
