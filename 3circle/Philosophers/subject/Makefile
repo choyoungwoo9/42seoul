@@ -1,8 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror#-g3 -fsanitize=thread -Wall -Wextra -Werror
-SRCS = src/philosopher.c src/philosopher_set_dinner.c \
-		src/philosopher_start_dinner.c src/philosopher_start_dinner_do.c \
-		src/philosopher_observe_dinner.c src/philosopher_util.c
+CFLAGS = -Wall -Wextra -Werror
+SRC_DIRS = philo
+SRCS = philosopher.c philosopher_set_dinner.c philosopher_sleep_strategy.c\
+		philosopher_start_dinner.c philosopher_start_dinner_do.c \
+		philosopher_observe_dinner.c philosopher_util.c philosopher_util_print.c
 
 # SRCS_BONUS = bonus/pipex_bonus.c bonus/pipex_heredoc_process_bonus.c \
 # 		bonus/pipex_make_command_path_bonus.c bonus/pipex_recursive_pipe_bonus.c \
@@ -10,7 +11,7 @@ SRCS = src/philosopher.c src/philosopher_set_dinner.c \
 	
 NAME = philosopher
 
-%.o : %.c
+%.o : $(SRC_DIRS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 OBJS = ${SRCS:.c=.o}
