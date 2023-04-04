@@ -60,6 +60,7 @@
 		"stat.h": "c",
 		"time.h": "c",
 		"iostream": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"__cxx_version": "c"
 	}
 }

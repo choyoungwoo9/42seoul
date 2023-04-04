@@ -1,8 +1,8 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = src/main.cpp src/Zombie.cpp src/newZombie.cpp src/randomChump.cpp
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 
-NAME = Zombie
+NAME = BraiiiiiiinnnzzzZ
 
 %.o : %.c
 	$(CC) $(CFLAGS) -cpp $< -o $@

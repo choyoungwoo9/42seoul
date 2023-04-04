@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g3 -fsanitize=thread -Wall -Wextra -Werror
 SRC_DIRS = philo
 SRCS = philosopher.c philosopher_set_dinner.c philosopher_sleep_strategy.c\
 		philosopher_start_dinner.c philosopher_start_dinner_do.c \

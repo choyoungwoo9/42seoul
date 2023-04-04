@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:34:02 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/16 18:40:39 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:01:48 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	is_anyone_dead(t_dinner_info *info)
 		state = tmp->philo->state;
 		pthread_mutex_unlock(&tmp->philo->philo_mutex);
 		if (state == DEAD_STATE)
+		{
 			return (1);
+		}
 		tmp = tmp->next->next;
 	}
 	return (0);
@@ -44,7 +46,9 @@ int	check_all_philo_eat_must_dinner(t_dinner_info *info)
 	i = 0;
 	while (++i <= info->phil_num)
 	{
+		pthread_mutex_lock(&tmp->philo->philo_mutex);
 		tmp_dinner_count = tmp->philo->dinner_count;
+		pthread_mutex_unlock(&tmp->philo->philo_mutex);
 		if (tmp_dinner_count < info->phil_must_eat)
 			return (0);
 		tmp = tmp->next->next;

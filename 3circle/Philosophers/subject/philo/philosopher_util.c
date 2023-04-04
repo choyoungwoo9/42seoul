@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:39:41 by youngwch          #+#    #+#             */
-/*   Updated: 2023/01/16 18:42:31 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:47:30 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void busy_sleep(unsigned long long sleep_us)
 	gettimeofday(&tmp_time, NULL);
 	while(1)
 	{
+		usleep(10);
 		gettimeofday(&tmp_time, NULL);
 		tmp_tmp_time = ((unsigned long long)(tmp_time.tv_sec - start_time.tv_sec) * 1000000 + (unsigned long long)(tmp_time.tv_usec - start_time.tv_usec));
 		if(tmp_tmp_time > sleep_us)

@@ -1,6 +1,6 @@
-rm -f push_swap
+#rm -f push_swap
 # cc -fsanitize=address main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c sort_few_stack.c -o push_swap 
-cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c sort_few_stack.c libft/ft_isdigit.c -o push_swap 
+#cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c operation4.c primary_logic.c stack_operation.c print_function.c util.c util2.c sort_few_stack.c libft/ft_isdigit.c -o push_swap 
 # ARGS="4 67 3 87 23"
 # ARGS="$(seq 10 | sort | xargs)"
 # ARGS="4 67 3 87 23"
@@ -35,9 +35,9 @@ cc main.c greedy_algo.c greedy_counter.c operation1.c operation2.c operation3.c 
 
 max=0
 min=1000000
-for var in {1..1}
+for var in {1..20}
 do
-	ARGS="$(seq 100 | sort -R | xargs)"
+	ARGS="$(seq 500 | sort -R | xargs)"
 
 	# ./push_swap $ARGS | ./checker_Mac $ARGS
 	# ./push_swap $ARGS | wc -l | tr -d ' '
