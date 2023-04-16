@@ -13,4 +13,5 @@ void check_leak()
 int main()
 {
     check_leak();
+    system("leaks Moar_brainz");
 }

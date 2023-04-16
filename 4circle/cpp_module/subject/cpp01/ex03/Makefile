@@ -4,8 +4,8 @@ SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 NAME = violence
 
-%.o : %.c
-	$(CC) $(CFLAGS) -cpp $< -o $@
+%.o : %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 OBJS = ${SRCS:.cpp=.o}
 

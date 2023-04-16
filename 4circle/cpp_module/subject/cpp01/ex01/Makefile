@@ -4,8 +4,8 @@ SRCS = main.cpp Zombie.cpp zombieHorde.cpp
 
 NAME = Moar_brainz
 
-%.o : %.c
-	$(CC) $(CFLAGS) -cpp $< -o $@
+%.o : %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 OBJS = ${SRCS:.cpp=.o}
 

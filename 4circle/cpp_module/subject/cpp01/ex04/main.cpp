@@ -1,26 +1,14 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "sed.hpp"
 
 int main(int argc, char **argv)
 {
 	if(argc != 4)
 	{
 		std::cout << "invalid argv" << std::endl;
-		return 0;
+		return 1;
 	}
-	std::ifstream ifs;
-	ifs.open(argv[1]);
-	if(ifs.fail())
-	{
-		std::cout << "error" << std::endl;
-		return 0;
-	}
-	while(!ifs.eof())
-	{
-		std::string a;
-		ifs >> a;
-		std::cout << a << std::endl;
-	}
-	ifs.close();
+	std::string str;
+	if(!get_input(argv[1], str))
+		return 1;
+	change_str(str, argv[1], argv[2], argv[3]);
 }

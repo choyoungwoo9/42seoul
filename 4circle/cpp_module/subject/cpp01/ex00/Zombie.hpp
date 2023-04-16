@@ -7,10 +7,7 @@
 class Zombie
 {
 	public:
-		Zombie(std::string const &param)
-		{
-			this->name = param;
-		}
+		Zombie(std::string const &param);
 		void announce(void) const;
 
 	private:
