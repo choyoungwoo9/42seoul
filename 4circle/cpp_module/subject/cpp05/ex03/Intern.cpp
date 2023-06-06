@@ -20,6 +20,7 @@ Intern &Intern::operator =(Intern &param)
 Form *Intern::makeForm(std::string form, std::string name)
 {
 	Form *ret;
+
 	if(form == "shrubbery creation")
 	{
 		ret = new ShrubberyCreationForm(name);

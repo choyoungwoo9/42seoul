@@ -10,10 +10,10 @@ class RobotomyRequestForm : public AForm
 {
 	private:
 		RobotomyRequestForm();
+		RobotomyRequestForm &operator =(RobotomyRequestForm &param);
+		RobotomyRequestForm(RobotomyRequestForm &param);
 	public:
 		virtual ~RobotomyRequestForm();
-		RobotomyRequestForm(RobotomyRequestForm &param);
-		RobotomyRequestForm &operator =(RobotomyRequestForm &param);
 		RobotomyRequestForm(std::string name);
 		virtual void execute(Bureaucrat const &executor) const;
 };

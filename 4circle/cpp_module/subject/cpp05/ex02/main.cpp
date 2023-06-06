@@ -70,9 +70,9 @@ void exception_test()
 	try
 	{
 		//AForm A("A", 3, 3);
-		//Bureaucrat B("B", 151);
-		//Bureaucrat B("B", 0);
-		Bureaucrat A("B", 1);
+		// Bureaucrat B("B", 151);
+		// Bureaucrat B2("B", 0);
+		Bureaucrat A("A", 1);
 		A.increment();
 	}
 	catch(const std::exception& e)
@@ -85,7 +85,7 @@ void exception_test()
 int main()
 {
 	sh_test();
-	//rob_test();
-	//pr_test();
-	//exception_test();
+	rob_test();
+	pr_test();
+	exception_test();
 }

@@ -22,13 +22,13 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat(const std::string param, int grade);
 		Bureaucrat(const Bureaucrat &param);
-		Bureaucrat &operator =(const Bureaucrat &param);
 		void increment();
 		void decrement();
 		const std::string &getName() const;
 		int getGrade() const;
 		void signForm(Form &param);
 	private:
+		Bureaucrat &operator =(const Bureaucrat &param);
 		const std::string name;
 		int grade;
 };

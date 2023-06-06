@@ -22,7 +22,6 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat(const std::string param, int grade);
 		Bureaucrat(const Bureaucrat &param);
-		Bureaucrat &operator =(const Bureaucrat &param);
 		void increment();
 		void decrement();
 		const std::string &getName() const;
@@ -30,6 +29,7 @@ class Bureaucrat
 		void signForm(AForm &param);
 		void executeForm(AForm& param);
 	private:
+		Bureaucrat &operator =(const Bureaucrat &param);
 		const std::string name;
 		int grade;
 };

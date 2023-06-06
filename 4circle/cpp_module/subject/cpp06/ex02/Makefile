@@ -1,6 +1,6 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp ft_util.cpp
+SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp FtUtil.cpp
 
 NAME = identify
 

@@ -9,10 +9,10 @@ class ShrubberyCreationForm : public Form
 {
 	private:
 		ShrubberyCreationForm();
-	public:
-		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm(ShrubberyCreationForm &param);
 		ShrubberyCreationForm &operator =(ShrubberyCreationForm &param);
+	public:
+		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm(std::string name);
 		virtual void execute(Bureaucrat const &executor) const;
 };

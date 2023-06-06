@@ -36,12 +36,11 @@ int main()
 			float_ar1[i] = i + 0.1;
 		Array<float> float_ar2(float_ar1);
 		for(int i = 0; i < 5; i ++)
-			float_ar2[i] += 1;
-		for(int i = 0; i < 5; i ++)
 		{
 			std::cout << "float origin : " << float_ar1[i] << std::endl;
 			std::cout << "float copy : " << float_ar2[i] << std::endl;
 		}
+		std::cout << std::endl;
 	}
 	catch(std::exception &e)
 	{
@@ -58,12 +57,11 @@ int main()
 		Array<float> float_ar2(3);
 		float_ar2 = float_ar1;
 		for(int i = 0; i < 5; i ++)
-			float_ar2[i] += 1;
-		for(int i = 0; i < 5; i ++)
 		{
 			std::cout << "float origin : " << float_ar1[i] << std::endl;
 			std::cout << "float copy : " << float_ar2[i] << std::endl;
 		}
+		std::cout << std::endl;
 	}
 	catch(std::exception &e)
 	{

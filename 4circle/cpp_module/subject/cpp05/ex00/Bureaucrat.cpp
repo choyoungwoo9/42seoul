@@ -49,14 +49,20 @@ void Bureaucrat::increment()
 {
 	grade --;
 	if(grade < 1)
+	{
+		grade ++;
 		throw GradeTooHighException();
+	}
 }
 
 void Bureaucrat::decrement()
 {
 	grade ++;
 	if(grade > 150)
+	{
+		grade --;
 		throw GradeTooLowException();	
+	}
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()

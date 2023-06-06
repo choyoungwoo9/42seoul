@@ -48,4 +48,5 @@ class Form
 		Form &operator =(const Form &param);
 };
 
+std::ostream &operator<<(std::ostream &out, const Form &bc);
 #endif

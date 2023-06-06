@@ -1,0 +1,145 @@
+//nginx.conf를 읽는다
+//서버를 구성한다
+//서버를 시작한다
+
+//요청 처리 로직
+//요청이 들어온다.
+//들어온 요청을 읽어 파싱한다.
+//들어온 요청 to 클래스의 작업을 수행한다.
+
+GET / HTTP/1.1
+Host: 127.0.0.1
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: wp-settings-time-1=1684666957
+
+//
+
+
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.25.0
+Date: Tue, 06 Jun 2023 06:15:09 GMT
+Content-Type: text/html
+Content-Length: 618
+Last-Modified: Mon, 05 Jun 2023 06:49:11 GMT
+Connection: keep-alive
+ETag: "647d8567-26a"
+Accept-Ranges: bytes
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to youngwoo!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_HEADERS 100
+
+typedef struct {
+    char* name;
+    char* value;
+} HttpHeader;
+
+typedef struct {
+    char* method;
+    char* path;
+    char* http_version;
+    HttpHeader headers[MAX_HEADERS];
+    int num_headers;
+} HttpRequest;
+
+HttpRequest* parseHttpRequest(const char* request) {
+    HttpRequest* httpRequest = (HttpRequest*)malloc(sizeof(HttpRequest));
+    httpRequest->method = NULL;
+    httpRequest->path = NULL;
+    httpRequest->http_version = NULL;
+    httpRequest->num_headers = 0;
+
+    char* saveptr;
+    char* line = strtok_r((char*)request, "\r\n", &saveptr);
+    int line_counter = 0;
+
+    while (line != NULL) {
+        if (line_counter == 0) {
+            // 첫 번째 줄에서 메소드, 경로, HTTP 버전을 파싱
+            httpRequest->method = strtok(line, " ");
+            httpRequest->path = strtok(NULL, " ");
+            httpRequest->http_version = strtok(NULL, " ");
+        } else {
+            // 헤더 파싱
+            char* name = strtok(line, ":");
+            char* value = strtok(NULL, ":");
+            if (name != NULL && value != NULL && httpRequest->num_headers < MAX_HEADERS) {
+                HttpHeader* header = &(httpRequest->headers[httpRequest->num_headers++]);
+                header->name = name;
+                header->value = value;
+            }
+        }
+
+        line = strtok_r(NULL, "\r\n", &saveptr);
+        line_counter++;
+    }
+
+    return httpRequest;
+}
+
+void freeHttpRequest(HttpRequest* httpRequest) {
+    free(httpRequest);
+}
+
+int main() {
+    const char* request = "GET /index.html HTTP/1.1\r\nHost: www.example.com\r\nUser-Agent: Mozilla/5.0\r\nAccept-Language: en-US,en;q=0.9\r\n\r\n";
+
+    HttpRequest* httpRequest = parseHttpRequest(request);
+    if (httpRequest != NULL) {
+        printf("Method: %s\n", httpRequest->method);
+        printf("Path: %s\n", httpRequest->path);
+        printf("HTTP Version: %s\n", httpRequest->http_version);
+
+        printf("Headers:\n");
+        for (int i = 0; i < httpRequest->num_headers; i++) {
+            HttpHeader* header = &(httpRequest->headers[i]);
+            printf("%s: %s\n", header->name, header->value);
+        }
+
+        freeHttpRequest(httpRequest);
+    }
+
+    return 0;
+}

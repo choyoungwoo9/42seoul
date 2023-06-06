@@ -152,20 +152,20 @@ Fixed Fixed::operator--(int)
 	return temp;
 }
 
-Fixed &Fixed::max(Fixed& p1, Fixed& p2)
-{
-	if(p1.getRawBits() > p2.getRawBits())
-		return p1;
-	else
-		return p2;
-}
-Fixed &Fixed::min(Fixed& p1, Fixed& p2)
-{
-	if(p1.getRawBits() < p2.getRawBits())
-		return p1;
-	else
-		return p2;
-}
+// Fixed &Fixed::max(Fixed& p1, Fixed& p2)
+// {
+// 	if(p1.getRawBits() > p2.getRawBits())
+// 		return p1;
+// 	else
+// 		return p2;
+// }
+// Fixed &Fixed::min(Fixed& p1, Fixed& p2)
+// {
+// 	if(p1.getRawBits() < p2.getRawBits())
+// 		return p1;
+// 	else
+// 		return p2;
+// }
 const Fixed &Fixed::max(const Fixed& p1, const Fixed& p2)
 {
 	if(p1.getRawBits() > p2.getRawBits())
