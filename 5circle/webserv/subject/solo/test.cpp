@@ -4,9 +4,12 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-
+#include <string>
+#include <iostream>
 #define PORT 8080
 #define BUFFER_SIZE 1024
+
+using namespace std;
 
 int main() {
     int server_fd, new_socket;
@@ -47,7 +50,13 @@ int main() {
         }
 
         read(new_socket, buffer, BUFFER_SIZE);
-        printf("Received request:\n%s\n", buffer);
+		string str = buffer;
+		if(str.find("\r\n") != string::npos)
+			cout << "FIND!!" << str.find("\r\n") << endl;
+		else
+			cout << "NOT FIND" << endl;
+        printf("Received request://////////////%s////////", buffer);
+		
 
         write(new_socket, response, strlen(response));
         printf("Response sent.\n");

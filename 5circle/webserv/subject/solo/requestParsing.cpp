@@ -1,5 +1,5 @@
 
-
+#include <vector>
 #include <string>
 #include <map>
 using namespace std;
@@ -11,13 +11,14 @@ class requestClass
 		string httpMethod;
 		string requestTarget;
 		string httpVersion;
-		map<string, string> headers;
+		vector<pair<string, string> > headers;
 		string body;
-		void appendRequest(string &rawRequest);
+		void appendRequest(string &rawRequest, unsigned int index);
 	private:
 		int level;
 		int curLevelIdx;
 		int headersLevel;
+		void requestClass::get_body(string &rawRequest, unsigned int index);
 };
 
 requestClass::requestClass()
@@ -27,9 +28,17 @@ requestClass::requestClass()
 	this->headers_level = 0;
 };
 
+void requestClass::get_headers(string &rawRequest, unsigned int index)
+{
+	
+}
 
+void requestClass::get_body(string &rawRequest, unsigned int index)
+{
+	this->body += rawRequest.substr(index, reqRequest.size()-index)
+}
 
-void requestClass::appendRequest(string &rawRequest)
+void requestClass::appendRequest(string &rawRequest, unsigned int index)
 {
 	if(level == 0)
 	{
@@ -37,11 +46,11 @@ void requestClass::appendRequest(string &rawRequest)
 	}
 	if(level == 1)
 	{
-
+		get_headers();
 	}
 	else if(level == 2)
 	{
-		
+		get_body();
 	}
 }
 
