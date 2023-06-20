@@ -6,11 +6,11 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:06:16 by yuikim            #+#    #+#             */
-/*   Updated: 2023/03/28 15:22:51 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:34:06 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 static void	remove_env(char *key, char **envp)
 {
@@ -33,10 +33,22 @@ static void	remove_env(char *key, char **envp)
 	envp[i] = NULL;
 }
 
-int	unset(char *key, char **envp)
+int	unset(char **args, char **envp)
 {
-	if (!key || !get_env_value(envp, key))
-		return (1);
-	remove_env(key, envp);
-	return (0);
+	int	ret;
+
+	ret = 0;
+	while (*(++args))
+	{
+		if (*args[0] != '_' && !ft_isalpha(*args[0]))
+		{
+			print_builtin_error(*args);
+			ret = 1;
+			continue ;
+		}
+		if (!get_env_value(envp, *args))
+			continue ;
+		remove_env(*args, envp);
+	}
+	return (ret);
 }

@@ -6,11 +6,11 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 20:53:31 by yuikim            #+#    #+#             */
-/*   Updated: 2023/03/28 15:44:43 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:33:43 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 char	*set_env_value(char ***envp, char *key, char *value)
 {	
@@ -66,4 +66,11 @@ void	ft_sort_ascii(char **str_arr, int size)
 		}		
 		i++;
 	}	
+}
+
+void	print_builtin_error(char *str)
+{
+	ft_putstr_fd("bash: unset: `", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
 }

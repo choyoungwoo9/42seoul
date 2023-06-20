@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:05:26 by youngwch          #+#    #+#             */
-/*   Updated: 2023/04/11 09:33:13 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:42:07 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
-# include"libft.h"
+#include"libft.h"
 
 void	check_type1(char format_type, int *length, va_list ap)
 {

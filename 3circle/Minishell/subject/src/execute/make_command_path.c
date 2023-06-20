@@ -6,13 +6,13 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:45:45 by youngwch          #+#    #+#             */
-/*   Updated: 2023/03/28 11:39:13 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:35:57 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
 
-void	free_string_array(char **str_array)
+static void	free_string_array(char **str_array)
 {
 	int	i;
 
@@ -34,10 +34,10 @@ static char	*select_exec_path(char *command, char **env_path_array)
 		tmp_str = ft_strjoin("/", command);
 		exec_path = ft_strjoin(env_path_array[i], tmp_str);
 		free(tmp_str);
-		if (access(exec_path, F_OK) == 0)
+		if (access(exec_path, X_OK | F_OK) == 0 && is_regular_file(exec_path))
 			break ;
 		free(exec_path);
-		if (env_path_array[i+1] == NULL)
+		if (env_path_array[i + 1] == NULL)
 			exec_path = NULL;
 	}
 	free_string_array(env_path_array);
@@ -52,12 +52,15 @@ static char	**make_exec_path(char **envp)
 	int		i;
 
 	i = -1;
+	env_tem_path = NULL;
 	while (*(envp + ++i))
 	{
 		if (ft_strnstr(*(envp + i), "PATH=", ft_strlen(*(envp + i))))
 			env_tem_path = ft_strnstr(*(envp + i), "PATH=",
 					ft_strlen(*(envp + i)));
 	}
+	if (!env_tem_path)
+		return (NULL);
 	split_array = ft_split(env_tem_path, '=');
 	env_path = ft_strdup(*(split_array + 1));
 	free_string_array(split_array);
@@ -72,6 +75,10 @@ char	*make_command_path(char *command, char **envp)
 	char	**env_path_array;
 
 	env_path_array = make_exec_path(envp);
+	if (!env_path_array)
+		return (command);
 	command_path = select_exec_path(command, env_path_array);
+	if (!command_path)
+		return (command);
 	return (command_path);
 }

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:36:48 by youngwch          #+#    #+#             */
-/*   Updated: 2023/04/11 09:33:04 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:42:16 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
-# include"libft.h"
+#include"libft.h"
 
 void	reculsive_put_unsigned_nbr(unsigned int n, int fd)
 {

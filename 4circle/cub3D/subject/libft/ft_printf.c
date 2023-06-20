@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:28:20 by youngwch          #+#    #+#             */
-/*   Updated: 2023/04/11 09:33:46 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:42:19 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
-# include"libft.h"
+#include"libft.h"
 
 void	categorize_type(const char *format, int *length, va_list ap)
 {

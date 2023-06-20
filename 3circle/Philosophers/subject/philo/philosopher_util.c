@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:39:41 by youngwch          #+#    #+#             */
-/*   Updated: 2023/02/27 16:47:30 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/03/02 08:22:06 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,8 @@ static int	ft_atoll(const char *str, long long *tmp_ll)
 	long long	result;
 
 	sign = 1;
-	if (*(str) == '-' || *(str) == '+')
-	{
-		if (*(str) == '-')
-			sign = -1;
+	if (*(str) == '+')
 		str ++;
-	}
 	if (!is_valid_digit_length(str, &digit))
 		return (0);
 	if (digit > 10 || digit == 0)
@@ -74,31 +70,28 @@ int	is_integer(char *argv, int *value)
 	return (1);
 }
 
-int	my_dead_check(t_philo *philo)
+int	busy_sleep(long long sleep_us, t_philo *philo)
 {
-	int	state;
+	struct timeval	start_time;
+	struct timeval	cur_time;
+	long long		my_time;
+	long long		starve_time;
 
-	pthread_mutex_lock(&philo->philo_mutex);
-	state = philo->state;
-	pthread_mutex_unlock(&philo->philo_mutex);
-	if (state == DEAD_STATE)
-		return (TRUE);
-	return (FALSE);
-}
-
-void busy_sleep(unsigned long long sleep_us)
-{
-	struct timeval start_time;
-	struct timeval tmp_time;
-	unsigned long long tmp_tmp_time;
-	gettimeofday(&start_time, NULL);
-	gettimeofday(&tmp_time, NULL);
-	while(1)
+	gettimeofday(&start_time, (void *)0);
+	while (1)
 	{
-		usleep(10);
-		gettimeofday(&tmp_time, NULL);
-		tmp_tmp_time = ((unsigned long long)(tmp_time.tv_sec - start_time.tv_sec) * 1000000 + (unsigned long long)(tmp_time.tv_usec - start_time.tv_usec));
-		if(tmp_tmp_time > sleep_us)
-			break;
+		usleep(1000);
+		gettimeofday(&cur_time, (void *)0);
+		my_time = (cur_time.tv_sec - start_time.tv_sec) * 1000000
+			+ (cur_time.tv_usec - start_time.tv_usec);
+		starve_time = (cur_time.tv_sec - philo->eat_time.tv_sec) * 1000000
+			+ (cur_time.tv_usec - philo->eat_time.tv_usec);
+		if ((long long)philo->time_to_die * 1000 <= starve_time)
+		{
+			print_func(philo->id, D_STATE, philo);
+			return (0);
+		}
+		if (my_time > sleep_us)
+			return (1);
 	}
 }

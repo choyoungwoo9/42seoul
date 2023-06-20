@@ -6,11 +6,11 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:39:16 by yuikim            #+#    #+#             */
-/*   Updated: 2023/03/28 19:42:21 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:33:39 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 static int	is_slash_char(char *str, char target)
 {
@@ -34,10 +34,10 @@ int	echo(char **arg)
 
 	new_line = 1;
 	i = 0;
-	if(arg[1] == NULL)
+	if (arg[1] == NULL)
 	{
 		printf("\n");
-		return 0;
+		return (0);
 	}
 	while (arg[++i])
 	{

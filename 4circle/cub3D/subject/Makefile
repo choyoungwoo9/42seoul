@@ -1,34 +1,39 @@
-# CC = cc
-# CFLAGS = -Wall -Wextra -Werror
-# SRCS = so_long.c so_long_make_mlx_instance_and_window.c so_long_render_map.c \
-# 		so_long_set_game_data_from_map.c so_long_hook_event.c \
-# 		so_long_check_valid_map.c so_long_check_valid_component.c \
-# 		so_long_check_valid_map_path.c so_long_check_valid.c so_long_util.c \
-# 		get_next_line.c get_next_line_utils.c so_long_get_map.c \
+NAME = cub3D
 
-# NAME = so_long
+CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-# %.o : %.c
-# 	$(CC) $(CFLAGS) -c $< -o $@
+LIBFT = make -C libft
 
-# OBJS = ${SRCS:.c=.o}
+SRCS = 	main.c \
+		ray_casting/draw_camera.c \
+		ray_casting/event.c \
+		ray_casting/load_texture.c \
+		ray_casting/raycasting.c \
+		ray_casting/set_camera.c \
+		ray_casting/init_info.c \
+		parsing/get_map.c \
+		parsing/get_util.c \
+		parsing/get_file.c \
+		parsing/get_element.c \
+		parsing/parse_rgb.c \
+		parsing/get_texture_path.c \
+		parsing/check_world_map.c \
 
-# all: make_libft ${NAME}
+OBJS = $(SRCS:.c=.o)
 
-# make_libft:
-# 	make -C libft all
-# 	make -C mlx all
+all	:	$(NAME)
 
-# ${NAME}: ${OBJS}
-# 	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit $^ \
-# 	./libft/libft.a ./mlx/libmlx.a -o $@ 
-# clean:
-# 	make -C libft clean
-# 	make -C mlx clean
-# 	rm -rf ${OBJS}
+$(NAME)	:	$(OBJS)
+			$(LIBFT)
+			$(CC) $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
-# fclean : clean
-# 	make -C libft fclean
-# 	rm -rf ${NAME}
+clean	:
+			$(RM) $(OBJS)
+			make -C libft clean
+fclean	:	clean
+			$(RM) cub3d libft/libft.a
 
-# re : fclean all
+re	:	fclean all
+
+.PHONY	:	all clean fclean re
