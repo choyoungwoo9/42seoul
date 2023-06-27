@@ -1,16 +1,54 @@
-
 #include "Context.hpp"
+
+Context::Context(string name, string str)
+{
+	this->name = name;
+	parse_conf(str);
+	main_flag = 0;
+}
+
+Context::Context(string name, string str, int main_flag)
+{
+	this->name = name;
+	this->main_flag = 1;
+	parse_conf(str);
+	context_validate();
+	set_directive();
+}
+
+Context::Context(string name, string str, string uri)
+{
+	this->name = name;
+	this->uri = uri;
+	parse_conf(str);
+}
 
 void Context::print_conf()
 {
+	cout << "///////////// Context print" <<  "/////////////" << endl;
 	cout << "name : " << name << endl;
-	for(int i = 0; i < directives.size(); i ++)
-		cout << directives[i].name << " : " << directives[i].value << endl;
+	cout << "uri : " << uri << endl;
+	cout << endl;
+	directives.print_all_key_value();
+	for(int i = 0; i < subContexts.size(); i ++)
+	{
+		cout << "/////////////" << i+1 << " subContexts print" <<  "/////////////" << endl;
+		subContexts[i].print_raw_conf();
+		cout << "/////////////" << i+1 << " subContexts end" <<  "/////////////" << endl;
+	}
+	cout << "///////////// Context end" <<  "/////////////" << endl;
+}
+
+void Context::print_raw_conf()
+{
+	cout << "name : " << name << endl;
+	for(int i = 0; i < parsed_directives.size(); i ++)
+		cout << parsed_directives[i].name << " : " << parsed_directives[i].value << endl;
 	cout << "uri : " << uri << endl;
 	for(int i = 0; i < subContexts.size(); i ++)
 	{
 		cout << "/////////////" << i+1 << " subContexts print" <<  "/////////////" << endl;
-		subContexts[i].print_conf();
+		subContexts[i].print_raw_conf();
 	}
 }
 
@@ -119,15 +157,19 @@ void Context::parse_conf(string &str){
 				uri = get_uri(i, str);
 			string subContextString = get_bracket(i, str);
 			if(uri.empty())
-				subContexts.push_back(Context(word, subContextString));
+			{
+				Context tmp(word, subContextString);
+				subContexts.push_back(tmp);
+			}
 			else
 			{
-				subContexts.push_back(Context(word, subContextString, uri));
+				Context tmp(word, subContextString, uri);
+				subContexts.push_back(tmp);
 			}
 		}
 		else{ //directive일때
 			string value = get_value(i, str);
-			directives.push_back(Directive(word, value));
+			parsed_directives.push_back(ParsedDirective(word, value));
 		}
 	}
 }

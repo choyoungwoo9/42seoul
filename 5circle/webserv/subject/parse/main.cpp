@@ -4,9 +4,7 @@
 #include <vector>
 #include <map>
 #include <sstream>
-#include "NginxConfig.hpp"
-#include "context_validate.cpp"
-#include "directive_validate.cpp"
+#include "MyNginx/NginxConfig.hpp"
 
 std::string getFileContents(const std::string& filename) {
     std::ifstream file(filename.c_str());
@@ -21,6 +19,7 @@ std::string getFileContents(const std::string& filename) {
     return oss.str();
 }
 
+
 int main() {
     string filename = "nginx.conf";
 	string fileContents;
@@ -31,27 +30,27 @@ int main() {
         return 1;
     }
 
+    NginxConfig conf(fileContents);
 	try
 	{
 		NginxConfig conf(fileContents);
-		conf.mainContext.print_conf();
-        context_validate(conf.mainContext);
-        directive_validate(conf.mainContext);
+		// conf.mainContext.print_conf();
+        conf.mainContext.print_conf();
 	}
 	catch(const ParseException &e)
 	{
 		cerr << e.what() << endl;
-        return 0;
+        return 1;
 	}
     catch(const ContextException &e)
 	{
 		cerr << e.what() << endl;
-        return 0;
+        return 1;
 	}
     catch(const DirectiveException &e)
 	{
 		cerr << e.what() << endl;
-        return 0;
+        return 1;
 	}
     return 0;
 }

@@ -1,6 +1,6 @@
 #ifndef NGINXCONFIG_HPP
 #define NGINXCONFIG_HPP
-#include "Context.hpp"
+#include "../Context/Context.hpp"
 
 using namespace std;
 
