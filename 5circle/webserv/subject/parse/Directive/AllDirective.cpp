@@ -5,17 +5,18 @@ AllDirective::AllDirective()
 {
 }
 
-AllDirective::AllDirective(AllDirective &param)
+AllDirective &AllDirective::operator =(AllDirective &param)
 {
-	// root = param.root;
-	// autoindex = param.autoindex;
-	// listen = param.listen;
-	// server_name = param.server_name;
-	// client_max_body_size = param.client_max_body_size;
-	// error_page = param.error_page;
-	// index = param.index;
-	// fastcgi_pass = param.fastcgi_pass;
-	// fastcgi_param = param.fastcgi_param;
+	root = param.root;
+	autoindex = param.autoindex;
+	listen = param.listen;
+	server_name = param.server_name;
+	client_max_body_size = param.client_max_body_size;
+	error_page = param.error_page;
+	index = param.index;
+	fastcgi_pass = param.fastcgi_pass;
+	fastcgi_param = param.fastcgi_param;
+	return *this;
 }
 
 void AllDirective::print_all_key_value()

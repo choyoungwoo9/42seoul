@@ -157,14 +157,10 @@ void Context::parse_conf(string &str){
 				uri = get_uri(i, str);
 			string subContextString = get_bracket(i, str);
 			if(uri.empty())
-			{
-				Context tmp(word, subContextString);
-				subContexts.push_back(tmp);
-			}
+				subContexts.push_back(Context(word, subContextString));
 			else
 			{
-				Context tmp(word, subContextString, uri);
-				subContexts.push_back(tmp);
+				subContexts.push_back(Context(word, subContextString, uri));
 			}
 		}
 		else{ //directive일때

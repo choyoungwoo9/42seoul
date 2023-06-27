@@ -27,15 +27,6 @@ public:
 	//파싱하다가 context중 location 발견될때 호출
 	Context(string name, string str, string uri);
 
-	Context(Context &param)
-	{
-		
-	}
-	Context &operator =(Context &param)
-	{
-		return *this;
-	}
-
 	int main_flag;
 	AllDirective directives;
     string name;

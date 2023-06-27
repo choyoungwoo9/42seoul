@@ -18,8 +18,8 @@ using namespace std;
 class AllDirective{
 	public:
 		AllDirective();
-		AllDirective(AllDirective &param);
 		void print_all_key_value();
+		AllDirective &operator =(AllDirective &directive);
 		DirRoot root;
 		DirAutoIndex autoindex;
 		DirListen listen;
