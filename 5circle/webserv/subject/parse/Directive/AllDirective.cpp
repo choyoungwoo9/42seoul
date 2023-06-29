@@ -23,9 +23,10 @@ void AllDirective::print_all_key_value()
 {
 	cout << "root : " << root.path << endl;
 	cout << "autoindex : " << autoindex.state << endl;
-	cout << "listen : " << listen.address << endl;
+	
+	cout << "listen : " << listen.address << boolalpha << " default : " << listen.is_default_server << endl;
 	cout << "server_name : ";
-	for(int i = 0; server_name.name_vector.size(); i ++)
+	for(int i = 0; i < server_name.name_vector.size(); i ++)
 		cout << server_name.name_vector[i] << "    ";
 	cout << endl;
 	cout << "client_max_body_size : " << client_max_body_size.size << endl;
@@ -42,3 +43,5 @@ void AllDirective::print_all_key_value()
 	cout << "fastcgi_pass : " << endl;
 	cout << "fastcgi_param : "  << endl;
 }
+
+// void AllDirective::print_all_key_value()

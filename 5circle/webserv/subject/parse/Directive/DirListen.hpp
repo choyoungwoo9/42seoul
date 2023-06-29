@@ -15,6 +15,7 @@ class DirListen{
 		DirListen()
 		{
 			address = "0.0.0.0:8000";
+			is_default_server = false;
 		}
 
 		DirListen &operator =(DirListen &param)
@@ -26,11 +27,32 @@ class DirListen{
 		void set_value(string &value)
 		{
 			string str = string_end_trim(value);
-			if(!is_one_word(str))
+			if(str.empty())
 			{
 				cout << "listen empty\n";
 				throw DirectiveException();
 			}
+
+			vector<string> parsed_white_space_str = white_space_split(str);
+			if(parsed_white_space_str.size() > 2)
+			{
+				cout << "listen invalid_parameter\n";
+				throw DirectiveException();
+			}
+
+			if(parsed_white_space_str.size() == 2)
+			{
+				if(parsed_white_space_str[1] != "default_server")
+				{
+					cout << "listen invalid_parameter\n";
+					throw DirectiveException();
+				}
+				else
+					is_default_server = true;
+				str = parsed_white_space_str[0];
+			}
+
+
 			vector<string> vt = split(str, ":");
 			// 65535
 			for(int i = 0; i < vt.size(); i++)
@@ -147,6 +169,7 @@ class DirListen{
 			}
 		}
 		string address;
+		bool is_default_server;
 };
 
 #endif

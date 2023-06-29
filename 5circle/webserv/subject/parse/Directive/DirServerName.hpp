@@ -16,10 +16,12 @@ class DirServerName{
 	public:
 		DirServerName()
 		{
+			name_vector.push_back("");
 		}
 
 		DirServerName &operator =(DirServerName &param)
 		{
+			name_vector.clear();
 			for(int i = 0; i < param.name_vector.size(); i++)
 				name_vector.push_back(param.name_vector[i]);
 			return *this;
@@ -27,6 +29,7 @@ class DirServerName{
 
 		void set_value(string &value)
 		{
+			name_vector.clear();
 			string str = string_end_trim(value);
 			if(str.empty())
 			{

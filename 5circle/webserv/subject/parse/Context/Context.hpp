@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 #include <sstream>
 #include <cctype>
 
@@ -37,10 +38,13 @@ public:
 
 	void print_conf();
 
+	void get_all_server(map<string, set<string> > &mp);
+	set<string> get_default_server();
+
 private:
 	void parse_conf(string &str);
 	void context_validate();
-	void set_directive();
+	void set_directive(AllDirective parent_setting);
 
 	string get_key(int &i, string &str);
 	int is_context(string &str);

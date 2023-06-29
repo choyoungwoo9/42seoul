@@ -22,12 +22,12 @@ void Context::categorize_directive(ParsedDirective &parsed_directives)
 		directives.fastcgi_param.set_value(parsed_directives.value);
 }
 
-void Context::set_directive()
+void Context::set_directive(AllDirective parent_setting)
 {
-	//부모의 설정 상속받는 구조
+	directives = parent_setting;
 	for(int i = 0; i < parsed_directives.size(); i ++)
 		categorize_directive(parsed_directives[i]);
 
 	for(int i = 0; i < subContexts.size(); i ++)
-		set_directive();
+		subContexts[i].set_directive(directives);
 }

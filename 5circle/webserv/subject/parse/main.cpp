@@ -15,10 +15,9 @@ std::string getFileContents(const std::string& filename) {
     std::ostringstream oss;
     oss << file.rdbuf();
     file.close();
-
+    
     return oss.str();
 }
-
 
 int main() {
     string filename = "nginx.conf";
@@ -30,12 +29,17 @@ int main() {
         return 1;
     }
 
-    NginxConfig conf(fileContents);
+    // NginxConfig conf(fileContents);
 	try
 	{
 		NginxConfig conf(fileContents);
-		// conf.mainContext.print_conf();
-        conf.mainContext.print_conf();
+        conf.check_duplicate_server_name();
+		// conf.mainContext.print_raw_conf();
+        conf.set_default_server();
+        // conf.mainContext.print_conf();
+        vector<pair<string, int> > vt = conf.find_all_port(); //-> listen하는 구조체
+        for(int i = 0; i < vt.size(); i ++)
+            cout << vt[i].first << " " << vt[i].second<< endl;
 	}
 	catch(const ParseException &e)
 	{
