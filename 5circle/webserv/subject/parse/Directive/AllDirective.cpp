@@ -42,6 +42,7 @@ void AllDirective::print_all_key_value()
 	cout << endl;
 	cout << "fastcgi_pass : " << endl;
 	cout << "fastcgi_param : "  << endl;
+	cout << "return : " << boolalpha << return_d.is_set << " " << return_d.code << " " << return_d.URI << endl;
 }
 
 // void AllDirective::print_all_key_value()

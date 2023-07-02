@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:33:40 by hocsong           #+#    #+#             */
-/*   Updated: 2023/06/29 14:44:58 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:40:03 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct sReqMsg
 typedef struct sResponseMsg
 {
 	float		protocolVersion;
+	int			code;
 	std::string	location;
 	std::string	allow;
 	long long	contentLen;
@@ -68,6 +69,7 @@ typedef struct sResponseMsg
 	std::string	date;
 	std::string	transferEncoding;
 	std::string	server;
+	std::string body;
 }tResponseMsg;
 
 #endif

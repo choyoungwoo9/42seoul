@@ -136,6 +136,7 @@ void Context::server_context_validate()
 	can.push_back("error_page");
 	can.push_back("index");
 	can.push_back("fastcgi_param");
+	can.push_back("return");
 
 	check_unique_and_valid_directive(unique, can, cnt);
 }
@@ -154,6 +155,7 @@ void Context::location_context_validate()
 	can.push_back("index");
 	can.push_back("fastcgi_param");
 	can.push_back("fastcgi_pass");
+	can.push_back("return");
 
 	check_unique_and_valid_directive(unique, can, cnt);
 }

@@ -33,13 +33,20 @@ int main() {
 	try
 	{
 		NginxConfig conf(fileContents);
+        //이거를 main내부에 넣어야 함
         conf.check_duplicate_server_name();
+        conf.check_duplicate_location();
 		// conf.mainContext.print_raw_conf();
         conf.set_default_server();
-        // conf.mainContext.print_conf();
-        vector<pair<string, int> > vt = conf.find_all_port(); //-> listen하는 구조체
-        for(int i = 0; i < vt.size(); i ++)
-            cout << vt[i].first << " " << vt[i].second<< endl;
+        conf.mainContext.print_conf();
+        // vector<pair<string, int> > vt = conf.find_all_port(); //-> listen하는 구조체
+        // for(int i = 0; i < vt.size(); i ++)
+        //     cout << vt[i].first << " " << vt[i].second<< endl;
+        // string address = "127.0.0.1";
+        // string port = "81";
+        // sReqMsg req;
+        // req.host = "127.0.0.1";
+        // conf.make_response(req, address, port);
 	}
 	catch(const ParseException &e)
 	{

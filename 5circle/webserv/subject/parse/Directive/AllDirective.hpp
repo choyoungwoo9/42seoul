@@ -10,6 +10,7 @@
 #include "DirListen.hpp"
 #include "DirRoot.hpp"
 #include "DirServerName.hpp"
+#include "DirReturn.hpp"
 
 #include <iostream>
 
@@ -29,6 +30,7 @@ class AllDirective{
 		DirIndex index;
 		DirFastCgiPass fastcgi_pass;
 		DirFastCgiParam fastcgi_param;
+		DirReturn return_d;
 };
 
 

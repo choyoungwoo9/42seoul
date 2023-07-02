@@ -20,6 +20,9 @@ void Context::categorize_directive(ParsedDirective &parsed_directives)
 		directives.fastcgi_pass.set_value(parsed_directives.value);
 	if(parsed_directives.name == "fastcgi_param")
 		directives.fastcgi_param.set_value(parsed_directives.value);
+	if(parsed_directives.name == "return")
+		directives.return_d.set_value(parsed_directives.value);
+	
 }
 
 void Context::set_directive(AllDirective parent_setting)

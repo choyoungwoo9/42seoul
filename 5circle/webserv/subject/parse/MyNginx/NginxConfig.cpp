@@ -10,6 +10,27 @@ void NginxConfig::check_duplicate_server_name()
 	mainContext.get_all_server(mp);
 }
 
+void NginxConfig::check_duplicate_location()
+{
+	Context &http = find_http_context();
+	if(http.name == "main")
+		return ;
+	for(int i = 0; i < http.subContexts.size(); i++)
+	{
+		set<string> uri_st;
+		for(int j = 0; j < http.subContexts[i].subContexts.size(); j ++)
+		{
+			string cur_uri = http.subContexts[i].subContexts[j].uri;
+			if(uri_st.find(cur_uri) != uri_st.end())
+			{
+				cout << "duplicate location uri\n";
+				throw DirectiveException();
+			}
+			uri_st.insert(cur_uri);
+		}
+	}
+}
+
 vector<pair<string, int> > NginxConfig::find_all_port()
 {
 	vector<pair<string, int> > ret;
@@ -40,48 +61,4 @@ void NginxConfig::set_default_server()
 			default_server_set.insert(cur_addr);
 		}
 	}
-}
-
-Context &NginxConfig::find_http_context()
-{
-	for(int i = 0; i < mainContext.subContexts.size(); i ++)
-	{
-		if(mainContext.subContexts[i].name == "http")
-		{
-			return mainContext.subContexts[i];
-		}
-	}
-	return mainContext;
-}
-
-Context &NginxConfig::find_virtual_server(string &host, string &address, string &port)
-{
-	Context &http = find_http_context();
-	if(http.name == "main")
-		return mainContext;
-	string full_address = (address + ':') + port;
-	for(int i = 0; i < http.subContexts.size(); i++)
-	{
-	
-		if(http.subContexts[i].directives.listen.address != full_address)
-			continue;
-		vector<string> server_names = http.subContexts[i].directives.server_name.name_vector;
-		for(int j = 0; j < server_names.size(); j++)
-		{
-			if(host == server_names[j])
-				return subContext
-		}
-	}
-}
-
-//추후 cgi처리 필요함 지금코드는 cgi 고려없음
-sResponseMsg NginxConfig::make_response(sReqMsg &req, string &address, string &port)
-{
-	Context &server = find_virtual_server(req.host, req.requestTarget);
-	//구성된 서버를 못찾은 상황인데 이런상황이 있을까 ?
-	// if(server.name == "main")
-	// {
-	// 	return ~~;
-	// }
-	// server.directives
 }

@@ -13,7 +13,8 @@ using namespace std;
 class DirErrorPage{
 	public:
 		DirErrorPage(){
-
+			error_num[404] = "HTML/404.html";
+			// error_num[404] = "HTML/404.html";
 		}
 		DirErrorPage &operator =(DirErrorPage &param)
 		{
