@@ -6,7 +6,7 @@
 /*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 17:35:29 by youngwch          #+#    #+#             */
-/*   Updated: 2023/03/31 10:23:54 by youngwch         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:30:01 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,4 @@ int	execute_iterate(t_execution *execution_ar, char ***envp, int **pipe_ar)
 	}
 	return (wait_child(execution_ar, pid));
 }
+
