@@ -1,0 +1,23 @@
+events{}
+http{
+    client_max_body_size 10m;
+    server{
+				server_name example.com;
+        root /Users/youngwch/Downloads/demo;
+        error_page 404 style.css;
+        listen 80;
+        autoindex on;
+        location /{
+        }
+    }
+    server{
+        listen 81;
+        location /{
+            index index.html;
+        }
+        location /cgi-bin/{
+            fastcgi_pass unix:/var/run/cgiwrap.sock;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        }
+    }
+}
