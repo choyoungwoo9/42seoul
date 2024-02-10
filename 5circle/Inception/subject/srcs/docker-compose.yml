@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    depends_on:
+      - db
+
+  nginx:
+    build:
+        context: ./requirements/nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - wordpress:/var/www/html
+    depends_on:
+      - wordpress
+
+  db:
+    build:
+      context: ./requirements/mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: somerootpassword
+    volumes:
+      - mariadb:/var/lib/mysql
+
+volumes:
+  wordpress:
+  mariadb:
