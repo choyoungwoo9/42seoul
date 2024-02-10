@@ -67,7 +67,7 @@ public:
 	{
 		listenAllAddressAndSetupMap();
 		kqueueFd = kqueue();
-		//listen하고 있는 소켓을 kqueue에 등록
+		// listen하고 있는 소켓을 kqueue에 등록
 		std::map<int, std::pair<std::string, int>>::iterator it;
 		for (it = listenerFdToAddressMap.begin(); it != listenerFdToAddressMap.end(); it++)
 		{
@@ -76,15 +76,15 @@ public:
 			EV_SET(&tempEvent, socketFd, EVFILT_READ, EV_ADD | EV_ENABLE, 0, 0, NULL);
 			changeList.push_back(tempEvent);
 		}
-		while(1)
+		while (1)
 		{
-			//이번에 등록할 이벤트인 changeList 등록, 새로운 이벤트는 changeList에 등록됨
-			//20 하드코딩 제거, //timeoutNULL이면 blocking아닌지 추후 확인
+			// 이번에 등록할 이벤트인 changeList 등록, 새로운 이벤트는 changeList에 등록됨
+			// 20 하드코딩 제거, //timeoutNULL이면 blocking아닌지 추후 확인
 			int newEventSize = kevent(kqueueFd, &changeList[0], changeList.size(), eventList, 20, NULL);
 			if (newEventSize == -1)
 				handleError("kevent");
 			changeList.clear();
-			for(int i = 0; i < newEventSize; i++)
+			for (int i = 0; i < newEventSize; i++)
 			{
 				struct kevent *curEvent = &eventList[i];
 				// if(curEvent->)

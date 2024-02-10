@@ -72,5 +72,5 @@
 		"memory_resource": "cpp",
 		"set": "cpp"
 	},
-	"C_Cpp.default.compilerPath": "/usr/bin/clang++"
+	"C_Cpp.default.compilerPath": "/usr/bin/clang++",
 }
