@@ -1,14 +1,13 @@
-FROM debian:bullseye-slim
-
-ENV MYSQL_DATABASE exampledb
-ENV MYSQL_USER exampleuser
-ENV MYSQL_PASSWORD examplepass
+# syntax=docker/dockerfile:1
+FROM debian:bullseye
 
 RUN apt-get update && \
-	apt-get install mariadb-server -y && \
-	service mysql start && \
-    mysql -e "GRANT ALL ON *.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';" && \
-    mysql -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};" && \
-    mysql -e "FLUSH PRIVILEGES;"
+	apt-get install mariadb-server -y
 
-CMD ["bash"]
+COPY conf/mysql.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+COPY start.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/start.sh
+
+ENTRYPOINT ["start.sh"]
+# CMD ["mysqld"]

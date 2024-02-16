@@ -1,44 +1,54 @@
-version: '3.1'
+version: "3.1"
 
 services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+    init: true
+    container_name: nginx
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - ./requirements/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - wordpress2:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - mynet
+
   wordpress:
     build:
       context: ./requirements/wordpress
+    init: true
+    container_name: wordpress
     restart: always
-    volumes:
-      - wordpress:/var/www/html
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
+    # volumes:
+    #   - wordpress2:/var/www/html
+    env_file:
+      - .env
     depends_on:
       - db
-
-  nginx:
-    build:
-        context: ./requirements/nginx
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - wordpress:/var/www/html
-    depends_on:
-      - wordpress
+    networks:
+      - mynet
 
   db:
     build:
       context: ./requirements/mariadb
+    init: true
+    container_name: db
     restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_ROOT_PASSWORD: somerootpassword
-    volumes:
-      - mariadb:/var/lib/mysql
+    env_file:
+      - .env
+    # volumes:
+    #   - mariadb2:/var/lib/mysql
+    networks:
+      - mynet
 
 volumes:
-  wordpress:
-  mariadb:
+  wordpress2:
+  mariadb3:
+
+networks:
+  mynet:
+    driver: bridge
