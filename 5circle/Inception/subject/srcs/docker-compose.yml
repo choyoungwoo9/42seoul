@@ -11,7 +11,8 @@ services:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-      - wordpress2:/var/www/html
+      # - wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -23,8 +24,9 @@ services:
     init: true
     container_name: wordpress
     restart: always
-    # volumes:
-    #   - wordpress2:/var/www/html
+    volumes:
+      # - wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html
     env_file:
       - .env
     depends_on:
@@ -40,14 +42,14 @@ services:
     restart: always
     env_file:
       - .env
-    # volumes:
-    #   - mariadb2:/var/lib/mysql
+    volumes:
+      - ./data/mariadb/:/var/lib/mysql
     networks:
       - mynet
 
 volumes:
-  wordpress2:
-  mariadb3:
+  wordpress:
+#   mariadb:
 
 networks:
   mynet:
